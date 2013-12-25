@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<title>Angular Dart Bootstrap UI</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+
+<body ng-cloak>
+
+	<div class="container">
+		<div bootstrap-ui-demo>
+
+			<header id="header">
+				<h2>Angular is fun! Here's a recipe book to prove it! {{mainCtrl.count + 2}}</h2>
+			</header>
+
+			<alert type="success" close="mainCtrl.closeAlert()">Transcluded content as message</alert>
+
+		</div>
+
+		<script type="application/dart" src="main.dart"></script>
+		<script type="text/javascript" src="packages/browser/dart.js"></script>
+	</div>
+</body>
+</html>

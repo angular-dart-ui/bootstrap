@@ -1,0 +1,4 @@
+<div class='alert' ng-class='"alert-" + alertCtrl.type'>
+    <content></content>
+    <button ng-if='alertCtrl.closeCallback!=null' type='button' class='close' ng-click='alertCtrl.close()'>&times;</button>
+</div>
