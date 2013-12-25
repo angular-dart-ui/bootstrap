@@ -2,3 +2,6 @@
 packages
 .project
 pubspec.lock
+
+test
+web
