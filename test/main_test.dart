@@ -1,12 +1,7 @@
 library main_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:di/di.dart';
-import 'package:angular/angular.dart';
-import 'package:angular/mock/module.dart';
-
+import './_specs.dart';
 import '../web/main.dart';
-
 
 main() {
   setUp(() {
@@ -15,7 +10,20 @@ main() {
   });
   tearDown(tearDownInjector);
 
-  group('recipe-book', () {
+  group('alert', () {
+    
+    test('Should create an alert box', inject((Compiler $compile, Scope $rootScope, Injector injector){
+      JQuery element = $('<div ng-bind="name"></div>');
+      $compile(element); 
+    }));
+    
+    test('Should compile fine', inject((TestBed _){
+      JQuery element = $('<div ng-cloak></div>');
+      expect(element.attr('ng-cloak')).toEqual('');
+      Element elem = _.compile(element);
+      expect(element.attr('ng-cloak')).toBeNull();
+    }));
+    
     
     /**
     test('should load recipes', async(inject((Injector injector,
@@ -55,3 +63,4 @@ main() {
   });
 
 }
+

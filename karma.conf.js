@@ -5,10 +5,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/main_test.dart',
-      {pattern: '**/*.dart', watched: false, included: false, served: true},
-      {pattern: 'packages/browser/dart.js', watched: false, included: true, served: true},
-      {pattern: 'packages/browser/interop.js', watched: false, included: true, served: true},
+      'test/**/*_test.dart',
+      {pattern: '**/*.dart', watched: true, included: false, served: true},
+      'packages/browser/dart.js',
+      'packages/browser/interop.js'
     ],
 
     autoWatch: true,
@@ -16,5 +16,6 @@ module.exports = function(config) {
     plugins: [
       'karma-dart'
     ]
+    
   });
 };
