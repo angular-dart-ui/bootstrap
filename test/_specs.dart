@@ -5,6 +5,7 @@ import 'dart:html';
 import 'dart:mirrors' as mirror;
 import 'package:unittest/unittest.dart' as unit;
 import 'package:angular/angular.dart';
+import 'package:angular/mock/module.dart';
 
 export 'dart:html';
 export 'package:unittest/unittest.dart';
@@ -225,5 +226,15 @@ class JQuery implements List<Node> {
           (Element n) => n.style.getPropertyValue(name),
           (Element n, v) => n.style.setProperty(name, value), value);
   JQuery children() => new JQuery(this[0].childNodes);
+}
+
+Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injector injector, {int repeatDigest:1}) {
+  JQuery element = $(html);
+  $compile(element)(injector, element);
+  for (int i=0; i<repeatDigest; i++) {
+    microLeap();
+    $rootScope.$digest();
+  }
+  return element[0];
 }
 
