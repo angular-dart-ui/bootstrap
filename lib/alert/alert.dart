@@ -9,7 +9,7 @@ import 'dart:html';
     template:
       '''<div class='alert' ng-class="'alert-' + alertCtrl.type">
           <content></content>
-          <button ng-if='alertCtrl.closeCallback!=null' type='button' class='close' ng-click='alertCtrl.close()'>&times;</button>
+          <button ng-if='alertCtrl.closeable' type='button' class='close' ng-click='alertCtrl.closeCallback()'>&times;</button>
       </div>''',
     publishAs: 'alertCtrl',
     applyAuthorStyles: true,
@@ -20,13 +20,13 @@ import 'dart:html';
 )
 class AlertComponent {
   
+  final Element element;
   String type;
+  bool closeable = false;
   BoundExpression closeCallback;
   
-  void close() {
-    if (closeCallback!=null) {
-      closeCallback();
-    }
+  AlertComponent(this.element) {
+    closeable = element.attributes.containsKey('close');
   }
   
 }

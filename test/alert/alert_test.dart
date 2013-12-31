@@ -22,14 +22,6 @@ main() {
     Scope $rootScope;
     Injector injector;
     
-    Element findAlert(Element elem, int index) {
-      return elem.children[index].shadowRoot.querySelector('.alert');
-    }
-    
-    Element findCloseButton(Element elem, int index) {
-      return elem.children[index].shadowRoot.querySelector('.close');
-    }
-
     setUp(() {
       setUpInjector();
       module((Module module) {
@@ -42,6 +34,16 @@ main() {
     });
     
     tearDown(tearDownInjector);
+    
+    Element findAlert(Element elem, int index) {
+      return elem.children[index].shadowRoot.querySelector('.alert');
+    }
+    
+    Element findCloseButton(Element elem, int index) {
+      return elem.children[index].shadowRoot.querySelector('.close');
+    }
+
+
   
     test('should render a simple alert', async(inject(() {
 
@@ -116,21 +118,10 @@ main() {
           "</div>";
       Element elem = compileComponent(html, $compile, $rootScope, injector, repeatDigest:2);
       
-      print('shadow inner of 0: ' + elem.children[0].shadowRoot.innerHtml);
-      
-      for (var i = 0, n = alerts.length; i < n; i++) {
-        expect(findCloseButton(elem, i)).toBeNull();
-      }
+      //print('shadow inner of 0: ' + elem.children[0].shadowRoot.innerHtml);
+      expect(findCloseButton(elem, 0)).toBeNull();
     })));
 
-/*
-    it('should not show close buttons if no close callback specified', function () {
-      element = $compile('<alert>No close</alert>')(scope);
-      scope.$digest();
-      expect(findCloseButton(0).css('display')).toBe('none');
-    });
-*/
-    
     /*
     it('it should be possible to add additional classes for alert', function () {
       var element = $compile('<alert class="alert-block" type="\'info\'">Default alert!</alert>')(scope);

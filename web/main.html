@@ -3,18 +3,24 @@
 <head>
 <title>Angular Dart Bootstrap UI</title>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<style>
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+    }
+</style>
 </head>
 
-<body ng-cloak>
+<body>
 
 	<div class="container">
 		<div bootstrap-ui-demo>
 
 			<header id="header">
-				<h2>Angular is fun! Here's a recipe book to prove it! {{mainCtrl.count + 2}}</h2>
+				<h2>Angular is fun! Here's a recipe book to prove it!</h2>
+                <div style="display:none">{{mainCtrl.count + 2}}</div>
 			</header>
-
-			<alert type="'success'" close="mainCtrl.closeAlert">Transcluded content as message</alert>
+			<alert ng-cloak type="'success'" close="mainCtrl.closeAlert()">Transcluded content as message</alert>
 
 		</div>
 
