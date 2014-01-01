@@ -1,7 +1,8 @@
 library alert_test;
 
 import '../_specs.dart';
-import '../../web/main.dart';
+
+import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
 
 main() {
   
@@ -25,7 +26,7 @@ main() {
     setUp(() {
       setUpInjector();
       module((Module module) {
-        module.install(new MyAppModule());
+        module.install(new BootstrapUI());
       });
       inject((
             Compiler _compile, Scope _rootScope, Injector _injector) {

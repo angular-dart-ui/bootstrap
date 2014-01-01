@@ -1,4 +1,4 @@
-name: angular_dart_ui_bootstrap_ui
+name: angular_dart_ui_bootstrap
 version: 0.0.1
 dependencies:
   angular: any

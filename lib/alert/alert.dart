@@ -3,6 +3,12 @@ library bootstrap_ui.alert;
 import 'package:angular/angular.dart';
 import 'dart:html';
 
+class AlertModule extends Module {
+  AlertModule() {
+    type(AlertComponent);
+  }
+}
+
 @NgComponent(
     selector: 'alert',
     //templateUrl: 'packages/angular_dart_ui_bootstrap_ui/alert/alert.html',

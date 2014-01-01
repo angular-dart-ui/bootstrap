@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:di/di.dart';
 import 'dart:html';
 
-import '../lib/alert/alert.dart';
+import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
 
 @NgController(
     selector: '[bootstrap-ui-demo]',
@@ -28,8 +28,8 @@ class BootstrapUiController {
 
 class MyAppModule extends Module {
   MyAppModule() {
+    install(new BootstrapUI());
     type(BootstrapUiController);
-    type(AlertComponent);
   }
 }
 
