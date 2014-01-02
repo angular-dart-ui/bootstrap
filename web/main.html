@@ -17,15 +17,18 @@
 		<div bootstrap-ui-demo>
 
 			<header id="header">
-				<h2>Angular is fun! Here's a recipe book to prove it!</h2>
+				<h2>Angular is fun! Here's a recipe book to prove it! {{mainCtrl.count + 2}}</h2>
                 <div style="display:none">{{mainCtrl.count + 2}}</div>
 			</header>
 			<alert ng-cloak type="'success'" close="mainCtrl.closeAlert()">Transcluded content as message</alert>
 
           <div>
             <tabset>
-              <tab heading="Tab 1"><b>First</b> Content!</tab>
-              <tab heading="Tab 2"><i>Second</i> Content!</tab>
+              <tab heading="Tab 1">
+                <tab-heading><i class="icon-heart"></i> Icon heading {{mainCtrl.count + 3}}?!?</tab-heading>
+                <b>First</b> Content is {{mainCtrl.count + 4}}!
+              </tab>
+              <tab heading="<b>Tab</b> 2"><i>Second</i> Content is {{11 + 13}}!</tab>
             </tabset>
           </div>
 

@@ -1,7 +1,6 @@
 library alert_test;
 
 import '../_specs.dart';
-
 import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
 
 main() {
@@ -16,25 +15,24 @@ main() {
                      { 'msg':'baz'}
                      ];
   
+  Compiler $compile;
+  Scope $rootScope;
+  Injector injector;
   
-  group('alert shadow dom options', () {
-    
-    Compiler $compile;
-    Scope $rootScope;
-    Injector injector;
-    
-    setUp(() {
-      setUpInjector();
-      module((Module module) {
-        module.install(new BootstrapUI());
-      });
-      inject((
-            Compiler _compile, Scope _rootScope, Injector _injector) {
-          $compile = _compile; $rootScope = _rootScope; injector = _injector;
-      });
+  setUp(() {
+    setUpInjector();
+    module((Module module) {
+      module.install(new BootstrapUI());
     });
-    
-    tearDown(tearDownInjector);
+    inject((
+        Compiler _compile, Scope _rootScope, Injector _injector) {
+      $compile = _compile; $rootScope = _rootScope; injector = _injector;
+    });
+  });
+  
+  tearDown(tearDownInjector);
+  
+  group('alert component', () {
     
     Element findAlert(Element elem, int index) {
       return elem.children[index].shadowRoot.querySelector('.alert');
@@ -43,7 +41,6 @@ main() {
     Element findCloseButton(Element elem, int index) {
       return elem.children[index].shadowRoot.querySelector('.close');
     }
-
 
   
     test('should render a simple alert', async(inject(() {
@@ -61,6 +58,7 @@ main() {
       
     })));
     
+    
     test("should generate alerts using ng-repeat", async(inject(() {
       $rootScope.alerts = alerts;
       Element elem = compileComponent(HTML, $compile, $rootScope, injector, repeatDigest:2);
@@ -70,6 +68,7 @@ main() {
         expect(e.shadowRoot.querySelector('.alert')).toBeNotNull();
       }
     })));
+    
     
     test("should use correct classes for different alert types", async(inject(() {
       $rootScope.alerts = alerts;
@@ -83,6 +82,7 @@ main() {
       expect(findAlert(elem, 2)).not.toHaveClass('alert-info');
       expect(findAlert(elem, 2)).not.toHaveClass('alert-block');
     })));
+    
     
     test("should fire callback when closed", async(inject(() {
 
@@ -99,6 +99,7 @@ main() {
       expect($rootScope.closeCallbackCalls).toBe(1);
     })));
 
+    
     test("should show close buttons", async(inject(() {
 
       $rootScope.alerts = alerts;
@@ -110,6 +111,7 @@ main() {
         expect(findCloseButton(elem, i)).toBeNotNull();
       }
     })));
+    
     
     test("should not show close buttons if no close callback specified", async(inject(() {
 

@@ -4,11 +4,13 @@ import 'package:angular/angular.dart';
 import 'dart:html';
 
 part 'tab.dart';
+part 'tabHeading.dart';
 
 class TabsetModule extends Module {
   TabsetModule() {
     type(TabsetComponent);
     type(TabComponent);
+    type(TabHeadingTranscludeComponent);
   }
 }
 
@@ -19,14 +21,12 @@ class TabsetModule extends Module {
 '''
 <div class="tabbable">
   <ul class="nav nav-tabs" ng-class="{'nav-stacked': tabsetCtrl.vertical, 'nav-justified': tabsetCtrl.justified}">
-    <content></content>
+    <li ng-repeat="tab in tabsetCtrl.tabs" ng-class="{active: tab.active, disabled: tab.disabled}">
+      <a ng-click="tabsetCtrl.select(tab)"><tab-heading-transclude tab="tab"></tab-heading-transclude></a>
+    </li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane" 
-         ng-repeat="tab in tabsetCtrl.tabs" 
-         ng-class="{active: tab.active}"
-         tab-content-transclude="tab">
-    </div>
+    <content></content>
   </div>
 </div>
 ''',
@@ -42,26 +42,26 @@ class TabsetComponent {
   final Element element;
   bool justified = false;
   bool vertical = false;
-  List tabs = [];
+  List<TabComponent> tabs = [];
   
   TabsetComponent(this.element) {
   }
 
-  void select(tab) {
+  void select(TabComponent tab) {
     tabs.forEach((tab) {
       tab.active = false;
     });
     tab.active = true;
   }
 
-  void addTab(tab) {
+  void addTab(TabComponent tab) {
     tabs.add(tab);
     if (tabs.length == 1 || tab.active) {
       select(tab);
     }
   }
 
-  void removeTab(tab) {
+  void removeTab(TabComponent tab) {
     int index = tabs.indexOf(tab);
     //Select a new tab if the tab to be removed is selected
     if (tab.active && tabs.length > 1) {
