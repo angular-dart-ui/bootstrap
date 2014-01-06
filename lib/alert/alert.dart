@@ -1,7 +1,8 @@
-library bootstrap_ui.alert;
+library bootstrap.ui.alert;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
 
 class AlertModule extends Module {
   AlertModule() {
@@ -24,14 +25,13 @@ class AlertModule extends Module {
       'close': '&closeCallback'
     }
 )
-class AlertComponent {
+class AlertComponent extends BaseComponent {
   
-  final Element element;
   String type;
   bool closeable = false;
   BoundExpression closeCallback;
   
-  AlertComponent(this.element) {
+  AlertComponent(Element element) : super(element) {
     closeable = element.attributes.containsKey('close');
   }
   

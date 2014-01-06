@@ -22,13 +22,14 @@
 			</header>
 			<alert ng-cloak type="'success'" close="mainCtrl.closeAlert()">Transcluded content as message</alert>
 
+{{actives}}
           <div>
             <tabset>
-              <tab heading="Tab 1">
+              <tab heading="Tab 1" active="actives.one">
                 <tab-heading><i class="icon-heart"></i> Icon heading {{mainCtrl.count + 3}}?!?</tab-heading>
                 <b>First</b> Content is {{mainCtrl.count + 4}}!
               </tab>
-              <tab heading="<b>Tab</b> 2"><i>Second</i> Content is {{11 + 13}}!</tab>
+              <tab heading="<b>Tab</b> 2" active="actives.two"><i>Second</i> Content is {{11 + 13}}!</tab>
             </tabset>
           </div>
 

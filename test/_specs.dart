@@ -6,6 +6,7 @@ import 'dart:mirrors' as mirror;
 import 'package:unittest/unittest.dart' as unit;
 import 'package:angular/angular.dart';
 import 'package:angular/mock/module.dart';
+import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
 
 export 'dart:html';
 export 'package:unittest/unittest.dart';
@@ -229,12 +230,23 @@ class JQuery implements List<Node> {
 }
 
 Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injector injector, {int repeatDigest:1}) {
-  JQuery element = $(html);
+  JQuery element = $(html.trim());
   $compile(element)(injector, element);
   for (int i=0; i<repeatDigest; i++) {
     microLeap();
     $rootScope.$digest();
   }
   return element[0];
+}
+
+List<Element> extSelector(var element, String selector) {
+  List<Element> elements = new List();
+  //print("outo for each " + element.innerHtml);
+  //print("search: " + element.querySelector("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").toString());
+  elements.addAll( element.querySelectorAll(selector) );
+  element.querySelectorAll("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").forEach((Element e) {
+    elements.addAll( extSelector(e.shadowRoot, selector) );
+  });
+  return elements;
 }
 

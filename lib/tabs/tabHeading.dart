@@ -1,4 +1,4 @@
-part of bootstrap_ui.tabs;
+part of bootstrap.ui.tabs;
 
 @NgComponent(
     selector: 'tab-heading-transclude',
@@ -6,12 +6,11 @@ part of bootstrap_ui.tabs;
       'tab': '=>tab'
     }
 )
-class TabHeadingTranscludeComponent extends NgShadowRootAware {
+class TabHeadingTranscludeComponent extends BaseComponent implements NgShadowRootAware {
   
-  final Element element;
   TabComponent tab;
   
-  TabHeadingTranscludeComponent(this.element) {
+  TabHeadingTranscludeComponent(Element element) : super(element) {
   }
 
   void onShadowRoot(ShadowRoot shadowRoot) {
@@ -19,7 +18,7 @@ class TabHeadingTranscludeComponent extends NgShadowRootAware {
     if (tabHeading!=null) {
       shadowRoot.append(tabHeading);
     } else {
-      shadowRoot.appendHtml(tab.heading);
+      shadowRoot.appendText(tab.heading);
     }
   }
 }

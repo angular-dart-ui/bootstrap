@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:di/di.dart';
 import 'dart:html';
 
-import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
+import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
 
 @NgController(
     selector: '[bootstrap-ui-demo]',
@@ -12,6 +12,7 @@ import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
 class BootstrapUiController {
 
   int count = 1;
+  Map actives = {};
   
   BootstrapUiController() {
   }

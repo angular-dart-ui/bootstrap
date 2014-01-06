@@ -1,7 +1,8 @@
-library bootstrap_ui.tabs;
+library bootstrap.ui.tabs;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
+import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
 
 part 'tab.dart';
 part 'tabHeading.dart';
@@ -37,14 +38,13 @@ class TabsetModule extends Module {
       'justified': '=>justified'
     }
 )
-class TabsetComponent {
+class TabsetComponent extends BaseComponent {
   
-  final Element element;
   bool justified = false;
   bool vertical = false;
   List<TabComponent> tabs = [];
   
-  TabsetComponent(this.element) {
+  TabsetComponent(Element element) : super(element) {
   }
 
   void select(TabComponent tab) {

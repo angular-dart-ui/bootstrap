@@ -1,4 +1,4 @@
-part of bootstrap_ui.tabs;
+part of bootstrap.ui.tabs;
 
 @NgComponent(
     selector: 'tab',
@@ -18,9 +18,8 @@ part of bootstrap_ui.tabs;
       'onDeselect': '&onDeselectCallback'
     }
 )
-class TabComponent {
+class TabComponent extends BaseComponent {
   
-  final Element element;
   final TabsetComponent tabsetCtrl; 
   var heading;
   BoundExpression onSelectCallback;
@@ -28,7 +27,7 @@ class TabComponent {
   bool _active = false;
   bool disabled = false;
   
-  TabComponent(this.element, this.tabsetCtrl) {
+  TabComponent(Element element, this.tabsetCtrl, Scope scope) : super(element) {
     this.tabsetCtrl.addTab(this);
   }
 

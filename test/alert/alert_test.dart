@@ -1,7 +1,7 @@
-library alert_test;
+library bootstrap.ui.alert.test;
 
 import '../_specs.dart';
-import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
+import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
 
 main() {
   
