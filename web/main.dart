@@ -1,10 +1,11 @@
-library bootstrap_ui;
+library bootstrap_ui_demo;
 
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';
 import 'dart:html';
-
 import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
+
+part 'buttons/buttonsDemo.dart';
 
 @NgController(
     selector: '[bootstrap-ui-demo]',
@@ -31,6 +32,7 @@ class MyAppModule extends Module {
   MyAppModule() {
     install(new BootstrapUI());
     type(BootstrapUiController);
+    type(ButtonsDemoController);
   }
 }
 
