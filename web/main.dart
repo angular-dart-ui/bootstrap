@@ -5,6 +5,7 @@ import 'package:di/di.dart';
 import 'dart:html';
 import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
 
+part 'alert/alertDemo.dart';
 part 'buttons/buttonsDemo.dart';
 
 @NgController(
@@ -32,6 +33,7 @@ class MyAppModule extends Module {
   MyAppModule() {
     install(new BootstrapUI());
     type(BootstrapUiController);
+    type(AlertDemoController);
     type(ButtonsDemoController);
   }
 }

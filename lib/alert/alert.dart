@@ -14,7 +14,7 @@ class AlertModule extends Module {
     selector: 'alert',
     //templateUrl: 'packages/angular_dart_ui_bootstrap_ui/alert/alert.html',
     template:
-      '''<div class='alert' ng-class="'alert-' + alertCtrl.type">
+      '''<div class='alert' ng-class="'alert-' + (alertCtrl.type!=null ? alertCtrl.type : 'warning')">
           <content></content>
           <button ng-if='alertCtrl.closeable' type='button' class='close' ng-click='alertCtrl.onClose()'>&times;</button>
       </div>''',
