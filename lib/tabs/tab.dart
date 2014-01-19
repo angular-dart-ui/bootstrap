@@ -13,17 +13,17 @@ part of bootstrap.ui.tabs;
     applyAuthorStyles: true,
     map: const {
       'heading': '@heading',
-      'onSelect': '&onSelectCallback', //This callback is called in contentHeadingTransclude
+      'select': '&onSelectCallback', //This callback is called in contentHeadingTransclude
                           //once it inserts the tab's content into the dom
-      'onDeselect': '&onDeselectCallback'
+      'deselect': '&onDeselectCallback'
     }
 )
 class TabComponent extends BaseComponent {
   
   final TabsetComponent tabsetCtrl; 
   var heading;
-  BoundExpression onSelectCallback;
-  BoundExpression onDeselectCallback;
+  var onSelectCallback;
+  var onDeselectCallback;
   bool _active = false;
   bool disabled = false;
   

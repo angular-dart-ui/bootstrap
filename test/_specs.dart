@@ -15,6 +15,7 @@ export 'package:di/dynamic_injector.dart';
 export 'package:angular/angular.dart';
 export 'package:angular/mock/module.dart';
 export 'package:perf_api/perf_api.dart';
+export 'jasmine_syntax.dart' hide main;
 
 
 List<Node> es(String html) {

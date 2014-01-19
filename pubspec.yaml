@@ -1,7 +1,7 @@
 name: angular_dart_ui_bootstrap
 version: 0.0.1
 dependencies:
-  angular: any
+  angular: 0.9.4
   browser: any
   js: any
 dev_dependencies:

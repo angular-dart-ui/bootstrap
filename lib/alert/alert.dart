@@ -16,7 +16,7 @@ class AlertModule extends Module {
     template:
       '''<div class='alert' ng-class="'alert-' + alertCtrl.type">
           <content></content>
-          <button ng-if='alertCtrl.closeable' type='button' class='close' ng-click='alertCtrl.closeCallback()'>&times;</button>
+          <button ng-if='alertCtrl.closeable' type='button' class='close' ng-click='alertCtrl.onClose()'>&times;</button>
       </div>''',
     publishAs: 'alertCtrl',
     applyAuthorStyles: true,
@@ -29,10 +29,16 @@ class AlertComponent extends BaseComponent {
   
   String type;
   bool closeable = false;
-  BoundExpression closeCallback;
+  var closeCallback;
   
   AlertComponent(Element element) : super(element) {
     closeable = element.attributes.containsKey('close');
+  }
+  
+  void onClose() {
+    if(closeCallback!=null){
+      closeCallback();
+    }
   }
   
 }

@@ -45,20 +45,20 @@ main() {
       scope.first = '1';
       scope.second = '2';
       scope.actives = {};
-      scope.selectFirst = () {};
-      scope.selectSecond = () {};
-      scope.deselectFirst = () {};
-      scope.deselectSecond = () {};
+      scope.selectFirst = jasmine.createSpy('first select listener');
+      scope.selectSecond = jasmine.createSpy('second select listener');
+      scope.deselectFirst = jasmine.createSpy('first deselect listener');
+      scope.deselectSecond = jasmine.createSpy('second deselect listener');
       
       String html =  '''
           <div>
             <tabset class="hello" data-pizza="pepperoni">
               <tab heading="First Tab {{first}}" active="actives.one" select="selectFirst()" deselect="deselectFirst()">
-                first content is {{first}}
+                <div id="tab-content">first content is {{first}}</div>
               </tab>
               <tab active="actives.two" select="selectSecond()" deselect="deselectSecond()">
                 <tab-heading><b>Second</b> Tab {{second}}</tab-heading>
-                second content is {{second}}
+                <div id="tab-content">second content is {{second}}</div>
               </tab>
             </tabset>
           </div>
@@ -88,10 +88,13 @@ main() {
 
     test('should bind tabs content and set first tab active', async(inject(() {
       Element elems = createElement();
-      expectContent(elems, 'first content is 1');
       
+      expect(contents(elems).length).toBe(1);
       expect(contents(elems)[0]).toHaveClass('active');
-      expect(contents(elems)[1]).not.toHaveClass('active');
+      print(extSelector(elems ,'tab')[0].getDestinationInsertionPoints()[0].text);
+      expect( renderedText ( extSelector(elems ,'#tab-content')[0] ) ).toEqual('first content is 1');
+      
+      //expect(contents(elems)[1]).not.toHaveClass('active');
       //expect(scope.actives.one).toBe(true);
       //expect(scope.actives.two).toBe(false);
     })));
@@ -106,21 +109,26 @@ main() {
       //expect($rootScope.actives.two).toBe(true);
     })));
 
-    /*
-    it('should call select callback on select', function() {
-      titles().eq(1).find('a').click();
-      expect(scope.selectSecond).toHaveBeenCalled();
-      titles().eq(0).find('a').click();
-      expect(scope.selectFirst).toHaveBeenCalled();
-    });
+    
+    test('should call select callback on select', async(inject(() {
+      Element elems = createElement();
+      extSelector(titles(elems)[1] , 'a')[0].click();
+      expect($rootScope.selectSecond).toHaveBeenCalled();
+      expect($rootScope.selectFirst).not.toHaveBeenCalled();
+      extSelector(titles(elems)[0] , 'a')[0].click();
+      expect($rootScope.selectFirst).toHaveBeenCalled();
+    })));
 
-    it('should call deselect callback on deselect', function() {
-      titles().eq(1).find('a').click();
-      titles().eq(0).find('a').click();
-      expect(scope.deselectSecond).toHaveBeenCalled();
-      titles().eq(1).find('a').click();
-      expect(scope.deselectFirst).toHaveBeenCalled();
-    });
-**/
+   
+    test('should call deselect callback on deselect', async(inject(() {
+      Element elems = createElement();
+      expect($rootScope.deselectSecond).not.toHaveBeenCalled();
+      extSelector(titles(elems)[1] , 'a')[0].click();
+      extSelector(titles(elems)[0] , 'a')[0].click();
+      expect($rootScope.deselectSecond).toHaveBeenCalled();
+      extSelector(titles(elems)[0] , 'a')[0].click();
+      expect($rootScope.deselectFirst).toHaveBeenCalled();
+    })));
+
   });
 }
