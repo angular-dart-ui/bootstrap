@@ -1,0 +1,28 @@
+<section id="ctrl.module.name">
+    <div class="page-header">
+      <h1>{{ctrl.module.title}}<small>
+          <!-- (<a target="_blank" href="https://github.com/angular-ui/bootstrap/tree/master/src/<%= module.name %>">ui.bootstrap.<%= module.name %></a>) -->
+      </small></h1>
+      </div>
+      <div class="row">
+        <div class="col-md-6 show-grid">
+            <div ng-include="{{ctrl.module.url}}.html"></div>
+        </div>
+        <div class="col-md-6">
+            <div ng-include="{{ctrl.module.url}}.doc.html"></div>
+        </div>
+    </div>
+    <hr>
+    <div class="row code">
+        <div class="col-md-12" ng-controller="PlunkerCtrl">
+            <tabset>
+                <tab heading="Markup">
+                        <pre class="prettyprint lang-html">{{ctrl.demoHTML}}</pre>
+                </tab>
+                <tab heading="Dart">
+                        <pre class="prettyprint lang-html">{{ctrl.demoCode}}</pre>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</section>
