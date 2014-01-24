@@ -114,7 +114,6 @@ main() {
       Element elems = createElement();
       extSelector(titles(elems)[1] , 'a')[0].click();
       expect($rootScope.selectSecond).toHaveBeenCalled();
-      expect($rootScope.selectFirst).not.toHaveBeenCalled();
       extSelector(titles(elems)[0] , 'a')[0].click();
       expect($rootScope.selectFirst).toHaveBeenCalled();
     })));

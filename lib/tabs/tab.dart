@@ -35,23 +35,23 @@ class TabComponent extends BaseComponent {
 
   get active => _active;
   
-  set active(bool newValue) {
-    if (newValue) {
+  set active(var newValue) {
+    if (newValue!=null && newValue==true) {
       tabsetCtrl.select(this);
     }
   }
   
   set select(bool newValue) {
-    _active = newValue;
     if (newValue) {
       if(onSelectCallback!=null) {
         onSelectCallback();
       }
     } else {
-      if(onDeselectCallback!=null) {
+      if(_active && onDeselectCallback!=null) {
         onDeselectCallback();
       }
     }
+    _active = newValue;
   }
 }
 

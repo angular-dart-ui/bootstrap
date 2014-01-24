@@ -2,6 +2,7 @@ part of bootstrap.ui.tabs;
 
 @NgComponent(
     selector: 'tab-heading-transclude',
+    applyAuthorStyles: true,
     map: const {
       'tab': '=>tab'
     }
