@@ -17,7 +17,7 @@ class TabsetModule extends Module {
 
 @NgComponent(
     selector: 'tabset',
-    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY,
+    visibility: NgDirective.CHILDREN_VISIBILITY,
     template:
 '''
 <div class="tabbable">
@@ -48,10 +48,12 @@ class TabsetComponent extends BaseComponent {
   }
 
   void select(TabComponent tab) {
-    tabs.forEach((tab) {
-      tab.active = false;
-    });
-    tab.active = true;
+    if (!tab.disabled) {
+      tabs.forEach((tab) {
+        tab.select = false;
+      });
+      tab.select = true;
+    }
   }
 
   void addTab(TabComponent tab) {

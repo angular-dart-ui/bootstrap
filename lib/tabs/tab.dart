@@ -2,7 +2,7 @@ part of bootstrap.ui.tabs;
 
 @NgComponent(
     selector: 'tab',
-    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY,
+    visibility: NgDirective.CHILDREN_VISIBILITY,
     template:
 '''
 <div ng-if="tabCtrl.active" class="tab-pane" ng-class="{active: tabCtrl.active}">
@@ -12,6 +12,8 @@ part of bootstrap.ui.tabs;
     publishAs: 'tabCtrl',
     applyAuthorStyles: true,
     map: const {
+      'disabled' : '<=>disabled',
+      'active' : '<=>active',
       'heading': '@heading',
       'select': '&onSelectCallback', //This callback is called in contentHeadingTransclude
                           //once it inserts the tab's content into the dom
@@ -34,6 +36,12 @@ class TabComponent extends BaseComponent {
   get active => _active;
   
   set active(bool newValue) {
+    if (newValue) {
+      tabsetCtrl.select(this);
+    }
+  }
+  
+  set select(bool newValue) {
     _active = newValue;
     if (newValue) {
       if(onSelectCallback!=null) {

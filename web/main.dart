@@ -8,6 +8,7 @@ import 'dart:html';
 
 part 'alert/alertDemo.dart';
 part 'buttons/buttonsDemo.dart';
+part 'tabs/tabsDemo.dart';
 
 @NgController(
     selector: '[bootstrap-ui-demo]',
@@ -19,6 +20,7 @@ class BootstrapUiController {
   BootstrapUiController() {
     modules.add(new ModuleDefinition('alert', 'Alert', 'alert/alertDemo'));
     modules.add(new ModuleDefinition('buttons', 'Buttons', 'buttons/buttonsDemo'));
+    modules.add(new ModuleDefinition('tabs', 'Tabs', 'tabs/tabsDemo'));
   }
   
 }
@@ -79,6 +81,7 @@ class MyAppModule extends Module {
     type(ModuleSectionComponent);
     type(AlertDemoController);
     type(ButtonsDemoController);
+    type(TabsDemoController);
   }
 }
 
