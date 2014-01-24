@@ -1,7 +1,7 @@
 library bootstrap.ui.core;
 
 import '../_specs.dart';
-import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 
 @NgComponent(
     selector : 'base-component',

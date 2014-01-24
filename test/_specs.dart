@@ -6,7 +6,7 @@ import 'dart:mirrors' as mirror;
 import 'package:unittest/unittest.dart' as unit;
 import 'package:angular/angular.dart';
 import 'package:angular/mock/module.dart';
-import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 
 export 'dart:html';
 export 'package:unittest/unittest.dart';

@@ -2,7 +2,7 @@ library bootstrap.ui.alert;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 
 class AlertModule extends Module {
   AlertModule() {

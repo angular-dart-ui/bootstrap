@@ -2,10 +2,10 @@ library bootstrap.ui.tabs;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 
 part 'tab.dart';
-part 'tabHeading.dart';
+part 'tab_heading.dart';
 
 class TabsetModule extends Module {
   TabsetModule() {

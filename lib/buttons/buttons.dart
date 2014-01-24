@@ -1,9 +1,8 @@
 library bootstrap.ui.buttons;
 
 import 'package:angular/angular.dart';
-import 'package:angular/utils.dart';
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/BaseComponent.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 
 class ButtonsModule extends Module {
   ButtonsModule() {

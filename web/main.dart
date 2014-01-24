@@ -3,7 +3,6 @@ library bootstrap_ui_demo;
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';
 import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
-import 'package:js/js.dart' as js;
 import 'dart:html';
 
 part 'alert/alertDemo.dart';
@@ -54,13 +53,13 @@ class ModuleSectionComponent implements NgShadowRootAware {
     http(method: 'GET', url: module.url + '.dart')
     .then((HttpResponse res) {
       demoCode = res.data.toString();
-      js.context.prettyPrint(shadowRoot.activeElement);
+      //js.context.prettyPrint(shadowRoot.activeElement);
     });
     
     http(method: 'GET', url: module.url + '.html')
     .then((HttpResponse res) {
       demoHTML = res.data.toString();
-      js.context.prettyPrint(shadowRoot.activeElement);
+      //js.context.prettyPrint(shadowRoot.activeElement);
      });
   }
 }
