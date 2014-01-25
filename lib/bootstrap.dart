@@ -1,4 +1,4 @@
-library bootstrap.ui.core;
+library bootstrap.ui;
 
 import 'package:angular/angular.dart';
 import 'package:angular_dart_ui_bootstrap/alert/alert.dart';

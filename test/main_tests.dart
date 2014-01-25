@@ -1,0 +1,48 @@
+library bootstrap.ui.test;
+
+import 'package:unittest/html_enhanced_config.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
+import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
+import '_specs.dart';
+
+part 'alert/alert_test.dart';
+part 'buttons/buttons_test.dart';
+part 'core/base_component_test.dart';
+part 'tabs/tabs_test.dart';
+
+void main() {
+  print('Test Suite for Angular-Dart-UI');
+  try {
+    useHtmlEnhancedConfiguration(); 
+  } catch (exception, stackTrace) {
+    //if the tests are launched in karma an exception is thrown here. Ignore it.
+  }
+  group('All Tests for Angular-Dart-UI', () {
+    test('Alert', () => alertTest());
+    test('Buttons', () => buttonsTest());
+    test('Core', () => coreTest());
+    test('Tabs', () => tabsTest());
+  });
+}
+
+
+Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injector injector, {int repeatDigest:1}) {
+  JQuery element = $(html.trim());
+  $compile(element)(injector, element);
+  for (int i=0; i<repeatDigest; i++) {
+    microLeap();
+    $rootScope.$digest();
+  }
+  return element[0];
+}
+
+List<Element> extSelector(var element, String selector) {
+  List<Element> elements = new List();
+  //print("outo for each " + element.innerHtml);
+  //print("search: " + element.querySelector("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").toString());
+  elements.addAll( element.querySelectorAll(selector) );
+  element.querySelectorAll("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").forEach((Element e) {
+    elements.addAll( extSelector(e.shadowRoot, selector) );
+  });
+  return elements;
+}

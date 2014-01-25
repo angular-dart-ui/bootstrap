@@ -1,9 +1,6 @@
-library bootstrap.ui.alert.test;
+part of bootstrap.ui.test;
 
-import '../_specs.dart';
-import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
-
-main() {
+void alertTest() {
   
   String HTML = "<div test-div>" + 
       "<alert ng-repeat='alert in alerts' type='alert.type' close='onCloseCallback(\$index)'>{{alert.msg}}</alert>" +
@@ -135,5 +132,6 @@ main() {
     */
     
   });
+  
 }
 

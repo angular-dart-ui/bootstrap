@@ -1,9 +1,6 @@
-library bootstrap.ui.buttons.test;
+part of bootstrap.ui.test;
 
-import '../_specs.dart';
-import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
-
-main() {
+void buttonsTest() {
   
   Compiler $compile;
   Scope $rootScope;

@@ -1,7 +1,4 @@
-library bootstrap.ui.core;
-
-import '../_specs.dart';
-import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
+part of bootstrap.ui.test;
 
 @NgComponent(
     selector : 'base-component',
@@ -11,7 +8,7 @@ class BaseComponentImpl extends BaseComponent {
   BaseComponentImpl(Element element) : super(element);
 }
 
-main() {
+void coreTest() {
   
   Compiler $compile;
   Scope $rootScope;

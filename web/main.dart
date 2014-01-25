@@ -2,7 +2,7 @@ library bootstrap_ui_demo;
 
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';
-import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
+import '../lib/bootstrap.dart';
 import 'dart:html';
 
 part 'alert/alertDemo.dart';

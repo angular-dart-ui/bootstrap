@@ -1,4 +1,4 @@
-library bootstrap.ui.core.test;
+library bootstrap.ui.core;
 
 import 'dart:html';
 

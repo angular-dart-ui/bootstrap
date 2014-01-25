@@ -1,9 +1,6 @@
-library bootstrap.ui.tabs.test;
+part of bootstrap.ui.test;
 
-import '../_specs.dart';
-import 'package:angular_dart_ui_bootstrap/core/bootstrap.dart';
-
-main() {
+void tabsTest() {
   
   Compiler $compile;
   Scope $rootScope;

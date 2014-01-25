@@ -30,7 +30,12 @@ To execute them in ubuntu:
     Execute in the src/main/webapp/angular folder:
     karma start karma.conf.js
     
-    start Dartium an browse to http://localhost:9876/
- 
- 
+    start Dartium and browse to http://localhost:9876/
+    
+    
+----------------------
+-- USEFUL COMMANDS:
+----------------------
 
+- Produce minified js:
+    dart2js --minify -o web/main.js web/main.dart

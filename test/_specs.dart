@@ -1,24 +1,45 @@
-library ng_specs;
+// The MIT License
+// 
+// Copyright (c) 2010-2012 Google, Inc. http://angularjs.org
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
+library ng_specs;
 
 import 'dart:html';
 import 'dart:mirrors' as mirror;
 import 'package:unittest/unittest.dart' as unit;
 import 'package:angular/angular.dart';
 import 'package:angular/mock/module.dart';
-import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
+
+import 'jasmine_syntax.dart';
 
 export 'dart:html';
+export 'jasmine_syntax.dart' hide main;
 export 'package:unittest/unittest.dart';
 export 'package:unittest/mock.dart';
 export 'package:di/dynamic_injector.dart';
 export 'package:angular/angular.dart';
 export 'package:angular/mock/module.dart';
 export 'package:perf_api/perf_api.dart';
-export 'jasmine_syntax.dart' hide main;
 
-
-List<Node> es(String html) {
+es(String html) {
   var div = new DivElement();
   div.setInnerHtml(html, treeSanitizer: new NullTreeSanitizer());
   return div.nodes;
@@ -61,7 +82,7 @@ class Expect {
   toEqual(expected) => unit.expect(actual, unit.equals(expected));
   toContain(expected) => unit.expect(actual, unit.contains(expected));
   toBe(expected) => unit.expect(actual,
-      unit.predicate((actual) => identical(expected, actual), '$expected'));
+  unit.predicate((actual) => identical(expected, actual), '$expected'));
   toThrow([exception]) => unit.expect(actual, exception == null ? unit.throws : unit.throwsA(new ExceptionContains(exception)));
   toBeFalsy() => unit.expect(actual, (v) => v == null ? true : v is bool ? v == false : false);
   toBeTruthy() => unit.expect(actual, (v) => v is bool ? v == true : true);
@@ -72,12 +93,12 @@ class Expect {
   toHaveBeenCalled() => unit.expect(actual.called, true, reason: 'method not called');
   toHaveBeenCalledOnce() => unit.expect(actual.count, 1, reason: 'method invoked ${actual.count} expected once');
   toHaveBeenCalledWith([a,b,c,d,e,f]) =>
-      unit.expect(actual.firstArgsMatch(a,b,c,d,e,f), true,
-      reason: 'method invoked with correct arguments');
+  unit.expect(actual.firstArgsMatch(a,b,c,d,e,f), true,
+  reason: 'method invoked with correct arguments');
   toHaveBeenCalledOnceWith([a,b,c,d,e,f]) =>
-      unit.expect(actual.count == 1 && actual.firstArgsMatch(a,b,c,d,e,f),
-                 true,
-                 reason: 'method invoked once with correct arguments. (Called ${actual.count} times)');
+  unit.expect(actual.count == 1 && actual.firstArgsMatch(a,b,c,d,e,f),
+  true,
+  reason: 'method invoked once with correct arguments. (Called ${actual.count} times)');
 
   toHaveClass(cls) => unit.expect(actual.classes.contains(cls), true, reason: ' Expected ${actual} to have css class ${cls}');
 
@@ -95,16 +116,16 @@ class Expect {
   }
 
   toEqualValid() {
-    // TODO: implement onece we have forms
+// TODO: implement onece we have forms
   }
   toEqualInvalid() {
-    // TODO: implement onece we have forms
+// TODO: implement onece we have forms
   }
   toEqualPristine() {
-    // TODO: implement onece we have forms
+// TODO: implement onece we have forms
   }
   toEqualDirty() {
-    // TODO: implement onece we have forms
+// TODO: implement onece we have forms
   }
 }
 
@@ -118,11 +139,11 @@ class NotExpect {
 
   toHaveClass(cls) => unit.expect(actual.classes.contains(cls), false, reason: ' Expected ${actual} to not have css class ${cls}');
   toBe(expected) => unit.expect(actual,
-      unit.predicate((actual) => !identical(expected, actual), '$expected'));
+  unit.predicate((actual) => !identical(expected, actual), '$expected'));
   toEqual(expected) => unit.expect(actual,
-      unit.predicate((actual) => expected != actual, '$expected'));
+  unit.predicate((actual) => expected != actual, '$expected'));
   toContain(expected) => unit.expect(actual,
-      unit.predicate((actual) => !actual.contains(expected), '$expected'));
+  unit.predicate((actual) => !actual.contains(expected), '$expected'));
 }
 
 class ExceptionContains extends unit.Matcher {
@@ -139,19 +160,24 @@ class ExceptionContains extends unit.Matcher {
   }
 
   unit.Description describe(unit.Description description) =>
-      description.add('exception contains ').addDescriptionOf(_expected);
+  description.add('exception contains ').addDescriptionOf(_expected);
 
   unit.Description describeMismatch(item, unit.Description mismatchDescription,
-                               Map matchState, bool verbose) {
-      return super.describeMismatch('$item', mismatchDescription, matchState,
-          verbose);
+                                    Map matchState, bool verbose) {
+    return super.describeMismatch('$item', mismatchDescription, matchState,
+    verbose);
   }
 }
 
-JQuery $(selector) {
+$(selector) {
   return new JQuery(selector);
 }
 
+
+class GetterSetter {
+  Getter getter(String key) => null;
+  Setter setter(String key) => null;
+}
 var getterSetter = new GetterSetter();
 
 class JQuery implements List<Node> {
@@ -159,10 +185,10 @@ class JQuery implements List<Node> {
 
   JQuery([selector]) {
     if (selector == null) {
-      // do nothing;
+// do nothing;
     } else if (selector is String) {
       _list.addAll(es(selector));
-    } else if (selector is List<Node>) {
+    } else if (selector is List) {
       _list.addAll(selector);
     } else if (selector is Node) {
       add(selector);
@@ -173,7 +199,7 @@ class JQuery implements List<Node> {
 
   noSuchMethod(Invocation invocation) => mirror.reflect(_list).delegate(invocation);
 
-  String _toHtml(node, [bool outer = false]) {
+  _toHtml(node, [bool outer = false]) {
     if (node is Comment) {
       return '<!--${node.text}-->';
     } else {
@@ -182,7 +208,7 @@ class JQuery implements List<Node> {
   }
 
   accessor(Function getter, Function setter, [value, single=false]) {
-    // TODO(dart): ?value does not work, since value was passed. :-(
+// TODO(dart): ?value does not work, since value was passed. :-(
     var setterMode = value != null;
     var result = setterMode ? this : '';
     _list.forEach((node) {
@@ -198,7 +224,7 @@ class JQuery implements List<Node> {
   html([String html]) => accessor(
           (n) => _toHtml(n),
           (n, v) => n.setInnerHtml(v, treeSanitizer: new NullTreeSanitizer()),
-          html);
+      html);
   val([String text]) => accessor((n) => n.value, (n, v) => n.value = v);
   text([String text]) => accessor((n) => n.text, (n, v) => n.text = v, text);
   contents() => fold(new JQuery(), (jq, node) => jq..addAll(node.nodes));
@@ -208,46 +234,31 @@ class JQuery implements List<Node> {
   attr([String name, String value]) => accessor(
           (n) => n.attributes[name],
           (n, v) => n.attributes[name] = v,
-          value,
-          true);
+      value,
+      true);
   prop([String name]) => accessor(
           (n) => getterSetter.getter(name)(n),
           (n, v) => getterSetter.setter(name)(n, v),
-          null,
-          true);
+      null,
+      true);
   textWithShadow() => fold('', (t, n) => '${t}${renderedText(n)}');
   find(selector) => fold(new JQuery(), (jq, n) => jq..addAll(
       (n is Element ? (n as Element).querySelectorAll(selector) : [])));
-  bool hasClass(String name) => fold(false, (hasClass, node) =>
-      hasClass || (node is Element && (node as Element).classes.contains(name)));
+  hasClass(String name) => fold(false, (hasClass, node) =>
+  hasClass || (node is Element && (node as Element).classes.contains(name)));
   addClass(String name) => _list.forEach((node) =>
-      (node is Element) ? (node as Element).classes.add(name) : null);
+  (node is Element) ? (node as Element).classes.add(name) : null);
   removeClass(String name) => _list.forEach((node) =>
-      (node is Element) ? (node as Element).classes.remove(name) : null);
+  (node is Element) ? (node as Element).classes.remove(name) : null);
   css(String name, [String value]) => accessor(
           (Element n) => n.style.getPropertyValue(name),
           (Element n, v) => n.style.setProperty(name, value), value);
-  JQuery children() => new JQuery(this[0].childNodes);
+  children() => new JQuery(this[0].childNodes);
 }
 
-Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injector injector, {int repeatDigest:1}) {
-  JQuery element = $(html.trim());
-  $compile(element)(injector, element);
-  for (int i=0; i<repeatDigest; i++) {
-    microLeap();
-    $rootScope.$digest();
-  }
-  return element[0];
-}
 
-List<Element> extSelector(var element, String selector) {
-  List<Element> elements = new List();
-  //print("outo for each " + element.innerHtml);
-  //print("search: " + element.querySelector("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").toString());
-  elements.addAll( element.querySelectorAll(selector) );
-  element.querySelectorAll("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").forEach((Element e) {
-    elements.addAll( extSelector(e.shadowRoot, selector) );
-  });
-  return elements;
+main() {
+  beforeEach(setUpInjector);
+  beforeEach(() => wrapFn(sync));
+  afterEach(tearDownInjector);
 }
-
