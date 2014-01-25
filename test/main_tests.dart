@@ -1,13 +1,17 @@
 library bootstrap.ui.test;
 
+
+import 'dart:html' ;
 import 'package:unittest/html_enhanced_config.dart';
+import '_specs.dart';
+
 import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
-import '_specs.dart';
 
 part 'alert/alert_test.dart';
 part 'buttons/buttons_test.dart';
 part 'core/base_component_test.dart';
+part 'dropdown_toggle/dropdown_toggle_test.dart';
 part 'tabs/tabs_test.dart';
 
 void main() {
@@ -21,6 +25,7 @@ void main() {
     test('Alert', () => alertTest());
     test('Buttons', () => buttonsTest());
     test('Core', () => coreTest());
+    test('Dropdown Toggle', () => dropdownToggleTest());
     test('Tabs', () => tabsTest());
   });
 }
