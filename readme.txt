@@ -37,5 +37,8 @@ To execute them in ubuntu:
 -- USEFUL COMMANDS:
 ----------------------
 
-- Produce minified js:
-    dart2js --minify -o web/main.js web/main.dart
+- Produce minified js code:
+    dart2js --minify -o web/main-min.js web/main.dart
+    
+- Produce minified dart code:
+    dart2js --minify --output-type=dart -o web/main-min.dart web/main.dart
