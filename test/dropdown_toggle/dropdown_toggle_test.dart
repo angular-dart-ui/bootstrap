@@ -1,9 +1,11 @@
-// Copyright (c) 2013 - 2014, akserg (Sergey Akopkokhyants)
-// https://github.com/akserg/angular.dart.ui
-// All rights reserved.  Please see the LICENSE.md file.
-// 
-// Credits: Tonis Pool who wrote and donate that code.
+// Copyright 2014 Francesco Cina
+// http://angular-dart-ui.github.io/
 //
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
 
 part of bootstrap.ui.test;
 
@@ -19,7 +21,7 @@ void dropdownToggleTest() {
     afterEach(tearDownInjector);
 
     Element dropdown() {
-      return _.compile('<li class="dropdown"><a dropdown-toggle></a><ul dropdown-toggle><li>Hello</li></ul></li>');
+      return _.compile('<li class="dropdown"><a class="dropdown-toggle"></a><ul class="dropdown-menu"><li>Hello</li></ul></li>');
     }
 
     it('should toggle on `a` click', () {
@@ -31,21 +33,17 @@ void dropdownToggleTest() {
       expect(elm.classes.contains('open')).toBe(false);
     });
 
-    it('should toggle on `ul` click', () {
-      Element elm = dropdown();
-      expect(elm.classes.contains('open')).toBe(false);
-      elm.querySelector('ul').click();
-      expect(elm.classes.contains('open')).toBe(true);
-      elm.querySelector('ul').click();
-      expect(elm.classes.contains('open')).toBe(false);
-    });
-
-    it('should close on elm click', () {
+    /* To be enable when a proper way to trigger keyboard events is found 
+    it('should close on escape key', () {
       Element elm = dropdown();
       elm.querySelector('a').click();
-      elm.click();
+      expect(elm.classes.contains('open')).toBe(true);
+      KeyboardEvent event = new KeyboardEvent("keydown");
+      event.keyCode = 27;
+      window.dispatchEvent(event);
       expect(elm.classes.contains('open')).toBe(false);
     });
+    */
 
     it('should close on document click', () {
       Element elm = dropdown();

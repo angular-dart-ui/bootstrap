@@ -1,63 +1,97 @@
-// Copyright (c) 2013 - 2014, akserg (Sergey Akopkokhyants)
-// https://github.com/akserg/angular.dart.ui
-// All rights reserved.  Please see the LICENSE.md file.
-// 
-// Credits: Tonis Pool who wrote and donate that code.
+// Copyright 2014 Francesco Cina
+// http://angular-dart-ui.github.io/
 //
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+
 library bootstrap.ui.dropdownToggle;
 
-import 'dart:html' as dom;
-import "package:angular/angular.dart";
-import "package:angular/utils.dart";
+import 'dart:html';
+import 'package:angular/angular.dart';
+import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
 
-/**
- * DropdownToggle Module.
- */
 class DropdownToggleModule extends Module {
   DropdownToggleModule() {
-    type(DropdownToggle);
+    type(DropdownService);
+    type(DropdownDirective);
+    type(DropdownToggleDirective);
+  }
+}
+
+@NgInjectableService()
+class DropdownService {
+  
+  DropdownDirective currentOpenedDropdown;
+  
+  void notifyOpen(DropdownDirective openDropdown) {
+    if (currentOpenedDropdown!=null && currentOpenedDropdown != openDropdown) {
+      currentOpenedDropdown.isOpen = false;
+    }
+    currentOpenedDropdown = openDropdown;
+  }
+  
+  void notifyClose() {
+    currentOpenedDropdown = null;
+  }
+  
+}
+
+
+@NgDirective(
+    selector: '.dropdown',
+    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY
+)
+class DropdownDirective extends BaseComponent {
+  
+  DropdownService dropdownService;
+  EventListener onClickListener;
+  EventListener onKeyDownListener;
+  bool open = false;
+  
+  DropdownDirective(Element element, this.dropdownService) : super(element) {
+    onClickListener = (MouseEvent event) {
+      this.isOpen = false;
+    };
+    onKeyDownListener = (KeyboardEvent event) {
+      if ( event.keyCode == 27 ) {
+        this.isOpen = false;
+      }
+    };
+  }
+  
+  get isOpen => open;
+  
+  set isOpen(bool open) {
+    this.open = open;
+    element.classes.toggle('open', open);
+    if (open) {
+      dropdownService.notifyOpen(this);
+      window.document.addEventListener('click', onClickListener, false);
+      window.document.addEventListener('keydown', onKeyDownListener);
+    } else {
+      dropdownService.notifyClose();
+      window.document.removeEventListener('click', onClickListener);
+      window.document.removeEventListener('keydown', onKeyDownListener);
+    }
   }
 }
 
 @NgDirective(
-    selector: '[dropdown-toggle]'
+    selector: '.dropdown-toggle'
 )
-class DropdownToggle {
-  static dom.Element _openElement;
-  static var _closeMenu = (dom.MouseEvent evt) => {};
-
-  dom.Element element;
-  Scope scope;
-
-  DropdownToggle(this.element, this.scope) {
-    this.element.parent.onClick.listen((dom.MouseEvent evt) => _closeMenu(evt));
-    this.element.onClick.listen(_toggleDropDown);
-  }
-
+class DropdownToggleDirective extends BaseComponent {
   
-  void _toggleDropDown(dom.MouseEvent event) {
-    bool elementWasOpen = (element == _openElement);
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (_openElement != null) {
-      _closeMenu(null);
-    }
-
-    if (!elementWasOpen && !element.classes.contains('disabled') && !toBool(element.attributes['disabled'])) {
-      element.parent.classes.add('open');
-      _openElement = element;
-      _closeMenu = (dom.MouseEvent event) {
-        if (event != null) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        element.parent.classes.remove('open');
-        _closeMenu = (dom.MouseEvent evt) => {};
-        _openElement = null;
-      };
-      dom.document.onClick.first.then((dom.MouseEvent evt) => _closeMenu(evt));
-    }
+  final DropdownDirective dropdown;
+  
+  DropdownToggleDirective(Element element, this.dropdown) : super(element) {
+    element.onClick.listen((event) { 
+      event.preventDefault();
+      event.stopPropagation();
+      dropdown.isOpen = !dropdown.isOpen;
+    });
   }
+  
 }

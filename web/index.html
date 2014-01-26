@@ -5,14 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Angular Dart directives for Bootstrap</title>
-    <meta name="description" content="Angular.dart (Angular Dart) native directives for Bootstrap. No 3rd party JS dependencies required!">
+    <meta name="description" content="Angular.dart (Angular Dart) native directives for Bootstrap. No 3rd party Dart or JS dependencies required!">
 
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/google-code-prettify/prettify.js"></script>
     
     <style>
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-        display: none !important;
+           display: none !important;
+        }
+        
+        body, section {
+           padding-top: 35px;
         }
     </style>
 
@@ -33,9 +37,11 @@
             </div>
             <nav class="hidden-xs">
                 <ul class="nav navbar-nav">
-                    <a href="#" role="button" class="navbar-brand">
-                        Angular Dart UI Bootstrap
-                    </a>
+                    <li>
+                        <a href="#" role="button" class="navbar-brand">
+                            Angular Dart UI Bootstrap
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle">
                             Directives <b class="caret"></b>
@@ -47,12 +53,12 @@
                     <li><a href="#getting_started">Getting started</a></li>
                 </ul>
             </nav>
-            <nav class="visible-xs" collapse="!isCollapsed">
+            <!-- <nav class="visible-xs" collapse="!isCollapsed">
                 <ul class="nav navbar-nav">
                     <li><a href="#getting_started" ng-click="isCollapsed = !isCollapsed">Getting started</a></li>
                     <li><a href="#directives_small" ng-click="isCollapsed = !isCollapsed">Directives</a></li>
                 </ul>
-            </nav>
+            </nav> -->
         </div>
     </div>
 </header>
@@ -126,7 +132,7 @@
                     </p>
                 </section>
                 <div ng-repeat="module in mainCtrl.modules">
-                    <module-section module="module"></module-section>
+                    <module-section module="module" id="{{module.name}}"></module-section>
                 </div>
             </div>
         </div>
