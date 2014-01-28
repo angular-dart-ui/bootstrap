@@ -1,0 +1,21 @@
+<div buttons-demo-controller>
+    <h4>Single toggle</h4>
+    <pre>{{btnCtrl.singleModel}}</pre>
+    <button type="button" class="btn btn-primary" ng-model="btnCtrl.singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+        Single Toggle
+    </button>
+    <h4>Checkbox</h4>
+    <pre>{{btnCtrl.checkModel.left}} - {{btnCtrl.checkModel.middle}} - {{btnCtrl.checkModel.right}} </pre>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="btnCtrl.checkModel.left" btn-checkbox>Left</button>
+        <button type="button" class="btn btn-primary" ng-model="btnCtrl.checkModel.middle" btn-checkbox>Middle</button>
+        <button type="button" class="btn btn-primary" ng-model="btnCtrl.checkModel.right" btn-checkbox>Right</button>
+    </div>
+    <h4>Radio</h4>
+    <pre>{{btnCtrl.radioModel}}</pre>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="btnCtrl.radioModel" btn-radio="'Left'">Left</button>
+        <button type="button" class="btn btn-primary" ng-model="btnCtrl.radioModel" btn-radio="'Middle'">Middle</button>
+        <button type="button" class="btn btn-primary" ng-model="btnCtrl.radioModel" btn-radio="'Right'">Right</button>
+    </div>
+</div>
