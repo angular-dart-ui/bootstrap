@@ -6,6 +6,7 @@ homepage: http://angular-dart-ui.github.io/
 dependencies:
   angular: '>=0.9.4'
 dev_dependencies:
+  shadow_dom: any
   browser: any
   js: any
   unittest: any
