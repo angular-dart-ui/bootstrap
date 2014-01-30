@@ -38,7 +38,7 @@ void alertTest() {
   
   tearDown(tearDownInjector);
   
-  group('alert component', () {
+  group('Alert', () {
     
     Element findAlert(Element elem, int index) {
       return elem.children[index].shadowRoot.querySelector('.alert');

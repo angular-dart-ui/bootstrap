@@ -28,7 +28,7 @@ void buttonsTest() {
   
   tearDown(tearDownInjector);
   
-  group('radio buttons', () {
+  group('Buttons - Radio', () {
 
     List<Element> compileButtons(String markup) {
       Element elem = compileComponent('<div>'+markup+'</div>', $compile, $rootScope, injector);
@@ -86,7 +86,7 @@ void buttonsTest() {
   });
   
   
-  group('checkbox', () {
+  group('Buttons - Checkbox', () {
 
     Element compileButton(String markup) {
       return compileComponent(markup, $compile, $rootScope, injector);

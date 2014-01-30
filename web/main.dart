@@ -16,6 +16,7 @@ import 'dart:html';
 
 part 'alert/alertDemo.dart';
 part 'buttons/buttonsDemo.dart';
+part 'collapse/collapseDemo.dart';
 part 'dropdown_toggle/dropdownToggleDemo.dart';
 part 'tabs/tabsDemo.dart';
 
@@ -29,6 +30,7 @@ class BootstrapUiController {
   BootstrapUiController() {
     modules.add(new ModuleDefinition('alert', 'Alert', 'alert/alertDemo'));
     modules.add(new ModuleDefinition('buttons', 'Buttons', 'buttons/buttonsDemo'));
+    modules.add(new ModuleDefinition('collapse', 'Collapse', 'collapse/collapseDemo'));
     modules.add(new ModuleDefinition('dropdown', 'Dropdown Toggle', 'dropdown_toggle/dropdownToggleDemo'));
     modules.add(new ModuleDefinition('tabs', 'Tabs', 'tabs/tabsDemo'));
   }
@@ -89,8 +91,10 @@ class MyAppModule extends Module {
     install(new BootstrapUI());
     type(BootstrapUiController);
     type(ModuleSectionComponent);
+    
     type(AlertDemoController);
     type(ButtonsDemoController);
+    type(CollapseDemoController);
     type(DropdownToggleDemoController);
     type(TabsDemoController);
   }

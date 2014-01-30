@@ -36,7 +36,7 @@ void coreTest() {
   
   tearDown(tearDownInjector);
 
-  group('BaseComponent basics', () {
+  group('CoreComponent basics', () {
     
     test('Component should have a custom attribute', async(inject(() {
       String HTML = '''<base-component>Some text here</base-component>''';

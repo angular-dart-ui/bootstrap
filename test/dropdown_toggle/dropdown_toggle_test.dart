@@ -10,7 +10,7 @@
 part of bootstrap.ui.test;
 
 void dropdownToggleTest() {
-  describe('Testing dropdownToggle:', () {
+  describe('DropdownToggle', () {
     TestBed _;
     beforeEach(setUpInjector);
     beforeEach(module((Module module) {
