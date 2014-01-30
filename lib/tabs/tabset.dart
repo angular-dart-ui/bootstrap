@@ -11,7 +11,7 @@ library bootstrap.ui.tabs;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
+import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 part 'tab.dart';
 part 'tab_heading.dart';

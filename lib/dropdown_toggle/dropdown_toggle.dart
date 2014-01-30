@@ -11,7 +11,7 @@ library bootstrap.ui.dropdownToggle;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:angular_dart_ui_bootstrap/core/base_component.dart';
+import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 class DropdownToggleModule extends Module {
   DropdownToggleModule() {
