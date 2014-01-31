@@ -1,12 +1,12 @@
 name: angular_dart_ui_bootstrap
-version: 0.1.0
 author: Francesco Cina <ufoscout@google.com>
-description: If you love Twitter Bootstrap and angularjs you can't avoid loving angular-ui (http://angular-ui.github.io/). This package is a porting of angular-ui bootstrap to dart. It contains a set of native Angular.dart components based on  Bootstrap's 3.x CSS. No dependency on Bootstrap's JavaScript is required.
+version: 0.2.0
 homepage: http://angular-dart-ui.github.io/
+description: If you love Twitter Bootstrap and angularjs you can't avoid loving angular-ui (http://angular-ui.github.io/). This package is a porting of angular-ui bootstrap to dart. It contains a set of native Angular.dart components based on  Bootstrap's 3.x CSS. No dependency on Bootstrap's JavaScript is required.
 dependencies:
   angular: '>=0.9.4'
 dev_dependencies:
-  shadow_dom: any
   browser: any
   js: any
+  shadow_dom: any
   unittest: any
