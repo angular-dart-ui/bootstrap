@@ -15,6 +15,7 @@ import '../lib/bootstrap.dart';
 import 'dart:html';
 
 part 'alert/alertDemo.dart';
+part 'accordion/accordionDemo.dart';
 part 'buttons/buttonsDemo.dart';
 part 'collapse/collapseDemo.dart';
 part 'dropdown_toggle/dropdownToggleDemo.dart';
@@ -28,6 +29,7 @@ class BootstrapUiController {
   List<ModuleDefinition> modules = [];
   
   BootstrapUiController() {
+    modules.add(new ModuleDefinition('accordion', 'Accordion', 'accordion/accordionDemo'));
     modules.add(new ModuleDefinition('alert', 'Alert', 'alert/alertDemo'));
     modules.add(new ModuleDefinition('buttons', 'Buttons', 'buttons/buttonsDemo'));
     modules.add(new ModuleDefinition('collapse', 'Collapse', 'collapse/collapseDemo'));
@@ -92,6 +94,7 @@ class MyAppModule extends Module {
     type(BootstrapUiController);
     type(ModuleSectionComponent);
     
+    type(AccordionDemoController);
     type(AlertDemoController);
     type(ButtonsDemoController);
     type(CollapseDemoController);

@@ -29,7 +29,7 @@ part of bootstrap.ui.tabs;
       'deselect': '&onDeselectCallback'
     }
 )
-class TabComponent extends BaseComponent {
+class TabComponent extends BaseComponent implements NgDetachAware {
   
   final TabsetComponent tabsetCtrl; 
   var heading;
@@ -61,6 +61,10 @@ class TabComponent extends BaseComponent {
       }
     }
     _active = newValue;
+  }
+
+  void detach() {
+    this.tabsetCtrl.removeTab(this);
   }
 }
 

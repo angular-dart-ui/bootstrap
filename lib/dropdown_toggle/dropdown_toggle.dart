@@ -33,8 +33,10 @@ class DropdownService {
     currentOpenedDropdown = openDropdown;
   }
   
-  void notifyClose() {
-    currentOpenedDropdown = null;
+  void notifyClose(DropdownDirective dropdownDirective) {
+    if (currentOpenedDropdown == dropdownDirective) {
+      currentOpenedDropdown = null;
+    }
   }
   
 }
@@ -44,7 +46,7 @@ class DropdownService {
     selector: '.dropdown',
     visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY
 )
-class DropdownDirective extends BaseComponent {
+class DropdownDirective extends BaseComponent implements NgDetachAware {
   
   DropdownService dropdownService;
   EventListener onClickListener;
@@ -72,10 +74,14 @@ class DropdownDirective extends BaseComponent {
       window.document.addEventListener('click', onClickListener, false);
       window.document.addEventListener('keydown', onKeyDownListener);
     } else {
-      dropdownService.notifyClose();
+      dropdownService.notifyClose(this);
       window.document.removeEventListener('click', onClickListener);
       window.document.removeEventListener('keydown', onKeyDownListener);
     }
+  }
+
+  void detach() {
+    isOpen = false;
   }
 }
 
