@@ -5,6 +5,7 @@ This project aims to port Angular-UI to Dart.
 
 ###UI components already available
 
+- **Accordion**
 - **Alert**
 - **Checkbox and RadioButton**
 - **Collapse**

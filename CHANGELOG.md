@@ -2,6 +2,7 @@
 
 ## Features
 
+- **Accordion:** created
 - **Collapse:** created
   
 
