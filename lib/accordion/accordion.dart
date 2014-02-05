@@ -40,7 +40,7 @@ class AccordionModule extends Module {
 class AccordionComponent extends BaseComponent {
   
   @NgOneWay('closeOthers')
-  var closeOthers;
+  bool closeOthers = true;
   
   bool justified = false;
   bool vertical = false;

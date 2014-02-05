@@ -15,7 +15,9 @@ import '_specs.dart';
 
 import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
+import 'package:angular_dart_ui_bootstrap/accordion/accordion.dart';
 
+part 'accordion/accordion_test.dart';
 part 'alert/alert_test.dart';
 part 'buttons/buttons_test.dart';
 part 'collapse/collapse_test.dart';
@@ -31,6 +33,7 @@ void main() {
     //if the tests are launched in karma an exception is thrown here. Ignore it.
   }
   group('All Tests for Angular-Dart-UI', () {
+    test('Accordion', () => accordionTest());
     test('Alert', () => alertTest());
     test('Buttons', () => buttonsTest());
     test('Collapse', () => collapseTest());

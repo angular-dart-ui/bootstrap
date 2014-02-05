@@ -45,7 +45,7 @@ class AccordionGroupComponent extends BaseComponent implements NgDetachAware {
   bool isDisabled = false;
   bool _open = false;
   
-  AccordionGroupComponent(Element element, this.accCtrl, Scope scope) : super(element) {
+  AccordionGroupComponent(Element element, this.accCtrl) : super(element) {
     this.accCtrl.addGroup(this);
   }
 
