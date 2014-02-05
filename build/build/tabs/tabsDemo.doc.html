@@ -1,0 +1,52 @@
+AngularJS version of the tabs directive.
+
+<h3> Settings </h3>
+
+<h4><code>&lt;tabset&gt;</code></h4>
+
+<ul>
+  <li>
+    <code>vertical</code>
+    (Defaults: false) :
+    Whether tabs appear vertically stacked.
+  </li>
+  <li>
+    <code>justified</code>
+    (Defaults: false) :
+    Whether tabs fill the container and have a consistent width.
+  </li>
+  <li>
+    <code>type</code>
+    (Defaults: 'tabs') :
+    Navigation type. Possible values are 'tabs' and 'pills'.
+  </li>
+</ul>
+
+<h4><code>&lt;tab&gt;</code></h4>
+
+<ul>
+  <li>
+    <code>heading</code> or <code>&lt;tab-heading&gt;</code> :
+    Heading text or HTML markup.
+  </li>
+  <li>
+   <code>active</code> &lt;i class="glyphicon glyphicon-eye-open"&gt;&lt;/i&gt;
+    (Defaults: false) :
+    Whether tab is currently selected. 
+  </li>
+  <li>
+    <code>disabled</code> &lt;i class="glyphicon glyphicon-eye-open"&gt;&lt;/i&gt;
+    (Defaults: false) :
+    Whether tab is clickable and can be activated.
+  </li>
+  <li>
+    <code>select()</code>
+    (Defaults: null) :
+    An optional expression called when tab is activated.
+  </li>
+  <li>
+    <code>deselect()</code>
+    (Defaults: null) :
+    An optional expression called when tab is deactivated.
+  </li>
+</ul>
