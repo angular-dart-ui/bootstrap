@@ -24,6 +24,7 @@ void alertTest() {
   Compiler $compile;
   Scope $rootScope;
   Injector injector;
+  DirectiveMap directives;
   
   setUp(() {
     setUpInjector();
@@ -31,8 +32,8 @@ void alertTest() {
       module.install(new BootstrapUI());
     });
     inject((
-        Compiler _compile, Scope _rootScope, Injector _injector) {
-      $compile = _compile; $rootScope = _rootScope; injector = _injector;
+        Compiler _compile, Scope _rootScope, Injector _injector, DirectiveMap _directives) {
+      $compile = _compile; $rootScope = _rootScope; injector = _injector; directives = _directives;
     });
   });
   
@@ -55,7 +56,7 @@ void alertTest() {
       String html = "<div test-div>" + 
           "<alert type='alert.type'>{{alert.msg}}</alert>" +
           "</div>";
-      Element elem = compileComponent(html, $compile, $rootScope, injector);
+      Element elem = compileComponent(html, $compile, $rootScope, injector, directives);
 
       //print('elem.outerHtml: ' + elem.outerHtml);
       //print('elem.children[0]: ' + elem.children[0].outerHtml);
@@ -67,7 +68,7 @@ void alertTest() {
     
     test("should generate alerts using ng-repeat", async(inject(() {
       $rootScope.alerts = alerts;
-      Element elem = compileComponent(HTML, $compile, $rootScope, injector, repeatDigest:2);
+      Element elem = compileComponent(HTML, $compile, $rootScope, injector, directives, repeatDigest:2);
       expect(elem.children.length).toEqual(3);
       
       for (Element e in elem.children) {
@@ -78,7 +79,7 @@ void alertTest() {
     
     test("should use correct classes for different alert types", async(inject(() {
       $rootScope.alerts = alerts;
-      Element elem = compileComponent(HTML, $compile, $rootScope, injector, repeatDigest:2);
+      Element elem = compileComponent(HTML, $compile, $rootScope, injector, directives, repeatDigest:2);
       
       expect(findAlert(elem, 0)).toHaveClass('alert-success');
       expect(findAlert(elem, 1)).toHaveClass('alert-error');
@@ -100,7 +101,7 @@ void alertTest() {
         expect(index).toBe(closeIndex);
       };
       
-      Element elem = compileComponent(HTML, $compile, $rootScope, injector, repeatDigest:2);
+      Element elem = compileComponent(HTML, $compile, $rootScope, injector, directives, repeatDigest:2);
       findCloseButton(elem, closeIndex).click();
       expect($rootScope.closeCallbackCalls).toBe(1);
     })));
@@ -111,7 +112,7 @@ void alertTest() {
       $rootScope.alerts = alerts;
       $rootScope.onCloseCallback = () {};
       
-      Element elem = compileComponent(HTML, $compile, $rootScope, injector, repeatDigest:2);
+      Element elem = compileComponent(HTML, $compile, $rootScope, injector, directives, repeatDigest:2);
 
       for (var i = 0, n = alerts.length; i < n; i++) {
         expect(findCloseButton(elem, i)).toBeNotNull();
@@ -125,7 +126,7 @@ void alertTest() {
       String html = "<div test-div>" + 
           "<alert type='alert.type'>{{alert.msg}}</alert>" +
           "</div>";
-      Element elem = compileComponent(html, $compile, $rootScope, injector, repeatDigest:2);
+      Element elem = compileComponent(html, $compile, $rootScope, injector, directives, repeatDigest:2);
       
       //print('shadow inner of 0: ' + elem.children[0].shadowRoot.innerHtml);
       expect(findCloseButton(elem, 0)).toBeNull();

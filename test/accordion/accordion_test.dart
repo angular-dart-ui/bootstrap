@@ -10,7 +10,7 @@
 part of bootstrap.ui.test;
 
 void accordionTest() {
-  
+
   Compiler $compile;
   Scope $rootScope;
   Injector injector;

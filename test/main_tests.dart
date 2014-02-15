@@ -44,9 +44,9 @@ void main() {
 }
 
 
-Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injector injector, {int repeatDigest:1}) {
+Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injector injector, DirectiveMap directives, {int repeatDigest:1}) {
   JQuery element = $(html.trim());
-  $compile(element)(injector, element);
+  $compile(element, directives)(injector, element);
   for (int i=0; i<repeatDigest; i++) {
     microLeap();
     $rootScope.$digest();

@@ -1,12 +1,12 @@
 name: angular_dart_ui_bootstrap
 author: Francesco Cina <ufoscout@google.com>
-version: 0.2.0
+version: 0.3.0
 homepage: http://angular-dart-ui.github.io/
 description: Port of angular-ui bootstrap (http://angular-ui.github.io/) to dart. It contains a set of native Angular.dart components based on  Bootstrap's 3.x CSS. No dependency on Bootstrap's JavaScript or Angular-ui is required.
 dependencies:
-  angular: '>=0.9.5'
+  angular: '>=0.9.7'
 dev_dependencies:
   browser: any
   js: any
   shadow_dom: any
-  unittest: any
+  unittest: '>=0.9.3 <0.10.0'

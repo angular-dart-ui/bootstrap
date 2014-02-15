@@ -14,6 +14,7 @@ void collapseTest() {
   Compiler $compile;
   Scope $rootScope;
   Injector injector;
+  DirectiveMap directives;
   
   setUp(() {
     setUpInjector();
@@ -21,8 +22,8 @@ void collapseTest() {
       module.install(new BootstrapUI());
     });
     inject((
-        Compiler _compile, Scope _rootScope, Injector _injector) {
-      $compile = _compile; $rootScope = _rootScope; injector = _injector;
+        Compiler _compile, Scope _rootScope, Injector _injector, DirectiveMap _directives) {
+      $compile = _compile; $rootScope = _rootScope; injector = _injector; directives = _directives;
     });
   });
   
@@ -31,7 +32,7 @@ void collapseTest() {
   group('Collapse', () {
 
     Element compileCollapse() {
-      return compileComponent('<div collapse="isCollapsed">Some Content</div>', $compile, $rootScope, injector);
+      return compileComponent('<div collapse="isCollapsed">Some Content</div>', $compile, $rootScope, injector, directives);
     };
 
     test('should be hidden on initialization if isCollapsed = true without transition', async(inject(() {

@@ -14,15 +14,16 @@ void tabsTest() {
   Compiler $compile;
   Scope $rootScope;
   Injector injector;
-  
+  DirectiveMap directives;
+
   setUp(() {
     setUpInjector();
     module((Module module) {
       module.install(new BootstrapUI());
     });
     inject((
-        Compiler _compile, Scope _rootScope, Injector _injector) {
-      $compile = _compile; $rootScope = _rootScope; injector = _injector;
+        Compiler _compile, Scope _rootScope, Injector _injector, DirectiveMap _directives) {
+      $compile = _compile; $rootScope = _rootScope; injector = _injector; directives = _directives;
     });
   });
   
@@ -69,7 +70,7 @@ void tabsTest() {
             </tabset>
           </div>
           ''';
-      return compileComponent(html, $compile, $rootScope, injector, repeatDigest:4);
+      return compileComponent(html, $compile, $rootScope, injector, directives, repeatDigest:4);
     };
 
     /*

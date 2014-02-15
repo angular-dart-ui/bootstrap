@@ -14,6 +14,7 @@ void buttonsTest() {
   Compiler $compile;
   Scope $rootScope;
   Injector injector;
+  DirectiveMap directives;
   
   setUp(() {
     setUpInjector();
@@ -21,8 +22,8 @@ void buttonsTest() {
       module.install(new BootstrapUI());
     });
     inject((
-        Compiler _compile, Scope _rootScope, Injector _injector) {
-      $compile = _compile; $rootScope = _rootScope; injector = _injector;
+        Compiler _compile, Scope _rootScope, Injector _injector, DirectiveMap _directives) {
+      $compile = _compile; $rootScope = _rootScope; injector = _injector; directives = _directives;
     });
   });
   
@@ -31,7 +32,7 @@ void buttonsTest() {
   group('Buttons - Radio', () {
 
     List<Element> compileButtons(String markup) {
-      Element elem = compileComponent('<div>'+markup+'</div>', $compile, $rootScope, injector);
+      Element elem = compileComponent('<div>'+markup+'</div>', $compile, $rootScope, injector, directives);
       return elem.querySelectorAll('button');
     };
 
@@ -89,7 +90,7 @@ void buttonsTest() {
   group('Buttons - Checkbox', () {
 
     Element compileButton(String markup) {
-      return compileComponent(markup, $compile, $rootScope, injector);
+      return compileComponent(markup, $compile, $rootScope, injector, directives);
     };
 
     //model -> UI
