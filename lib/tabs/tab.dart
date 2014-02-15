@@ -29,16 +29,17 @@ part of bootstrap.ui.tabs;
       'deselect': '&onDeselectCallback'
     }
 )
-class TabComponent extends BaseComponent implements NgDetachAware {
+class TabComponent implements NgDetachAware {
   
   final TabsetComponent tabsetCtrl; 
+  final Element element;
   var heading;
   var onSelectCallback;
   var onDeselectCallback;
   bool _active = false;
   bool disabled = false;
   
-  TabComponent(Element element, this.tabsetCtrl, Scope scope) : super(element) {
+  TabComponent(this.element, this.tabsetCtrl, Scope scope) {
     this.tabsetCtrl.addTab(this);
   }
 

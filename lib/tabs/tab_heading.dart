@@ -16,12 +16,9 @@ part of bootstrap.ui.tabs;
       'tab': '=>tab'
     }
 )
-class TabHeadingTranscludeComponent extends BaseComponent implements NgShadowRootAware {
+class TabHeadingTranscludeComponent implements NgShadowRootAware {
   
   TabComponent tab;
-  
-  TabHeadingTranscludeComponent(Element element) : super(element) {
-  }
 
   void onShadowRoot(ShadowRoot shadowRoot) {
     Element tabHeading = tab.element.querySelector('tab-heading');

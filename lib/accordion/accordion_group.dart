@@ -38,14 +38,15 @@ part of bootstrap.ui.accordion;
       'heading' : '@heading'
     }
 )
-class AccordionGroupComponent extends BaseComponent implements NgDetachAware {
+class AccordionGroupComponent implements NgDetachAware {
   
+  final Element element;
   final AccordionComponent accCtrl;
   String heading;
   bool isDisabled = false;
   bool _open = false;
   
-  AccordionGroupComponent(Element element, this.accCtrl) : super(element) {
+  AccordionGroupComponent(this.element, this.accCtrl) {
     this.accCtrl.addGroup(this);
   }
 

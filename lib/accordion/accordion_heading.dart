@@ -16,11 +16,12 @@ part of bootstrap.ui.accordion;
       'group': '=>group'
     }
 )
-class AccordionHeadingTranscludeComponent extends BaseComponent implements NgShadowRootAware {
+class AccordionHeadingTranscludeComponent implements NgShadowRootAware {
   
-  AccordionGroupComponent group;
+  final Element element;
+  final AccordionGroupComponent group;
   
-  AccordionHeadingTranscludeComponent(Element element, this.group) : super(element) {
+  AccordionHeadingTranscludeComponent(this.element, this.group) {
   }
 
   void onShadowRoot(ShadowRoot shadowRoot) {

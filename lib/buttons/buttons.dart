@@ -11,7 +11,6 @@ library bootstrap.ui.buttons;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 class ButtonsModule extends Module {
   ButtonsModule() {
@@ -26,11 +25,20 @@ class ButtonsModule extends Module {
       'btnRadio': '=>buttonValue'
     }
 )
-class ButtonRadioDirective extends BaseComponent {
+class ButtonRadioDirective {
   
-  Element inputElement;
+  final Element inputElement;
   NgModel ngModel;
   var currentValue;
+  
+  ButtonRadioDirective(this.inputElement, this.ngModel, Scope scope) {
+    ngModel.render = (value) {
+      evaluateValue(value);
+    };
+    inputElement.onClick.listen((value) {
+      scope.$apply(() => ngModel.viewValue = this.currentValue);
+    });
+  }
   
   set buttonValue(var value) {
     this.currentValue = value;
@@ -45,28 +53,19 @@ class ButtonRadioDirective extends BaseComponent {
     }
   }
   
-  ButtonRadioDirective(Element element, this.ngModel, Scope scope) : super(element) {
-    inputElement = element;
-    ngModel.render = (value) {
-      evaluateValue(value);
-    };
-    inputElement.onClick.listen((value) {
-      scope.$apply(() => ngModel.viewValue = this.currentValue);
-    });
-  }
-  
 }
 
 
 @NgDirective(
     selector: '[btn-checkbox][ng-model]'
 )
-class ButtonCheckboxDirective extends BaseComponent {
+class ButtonCheckboxDirective {
   
-  Scope scope;
+  final Element element;
+  final Scope scope;
   bool checked;
   
-  ButtonCheckboxDirective(Element element, NgModel ngModel, this.scope) : super(element) {
+  ButtonCheckboxDirective(this.element, NgModel ngModel, this.scope) {
     
     ngModel.render = (value) {
       checked = (value == getTrueValue());

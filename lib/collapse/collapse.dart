@@ -12,7 +12,6 @@ library bootstrap.ui.collapse;
 import 'package:angular/angular.dart';
 import 'package:angular/utils.dart' as utils;
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 class CollapseModule extends Module {
   CollapseModule() {
@@ -26,9 +25,11 @@ class CollapseModule extends Module {
       'collapse': '=>collapseValue'
     }
 )
-class CollapseDirective extends BaseComponent {
+class CollapseDirective {
   
-  CollapseDirective(Element element) : super(element);
+  final Element element;
+  
+  CollapseDirective(this.element);
   
   set collapseValue(var collapseValue) {
     if (utils.toBool(collapseValue)) {

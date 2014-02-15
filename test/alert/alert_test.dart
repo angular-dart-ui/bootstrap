@@ -74,6 +74,7 @@ void alertTest() {
       for (Element e in elem.children) {
         expect(e.shadowRoot.querySelector('.alert')).toBeNotNull();
       }
+      
     })));
     
     

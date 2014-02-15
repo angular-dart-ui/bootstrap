@@ -12,7 +12,6 @@ library bootstrap.ui.accordion;
 import 'package:angular/angular.dart';
 import 'package:angular/utils.dart' as utils;
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 part 'accordion_group.dart';
 part 'accordion_heading.dart';
@@ -37,7 +36,9 @@ class AccordionModule extends Module {
     publishAs: 'accCtrl',
     applyAuthorStyles: true
 )
-class AccordionComponent extends BaseComponent {
+class AccordionComponent {
+  
+  final Element element;
   
   @NgOneWay('closeOthers')
   bool closeOthers = true;
@@ -46,7 +47,7 @@ class AccordionComponent extends BaseComponent {
   bool vertical = false;
   List<AccordionGroupComponent> groups = [];
   
-  AccordionComponent(Element element) : super(element) {
+  AccordionComponent(this.element) {
   }
 
   void onOpenGroup(AccordionGroupComponent openGroup) {

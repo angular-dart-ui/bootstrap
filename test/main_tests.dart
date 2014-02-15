@@ -13,7 +13,6 @@ import 'dart:html' ;
 import 'package:unittest/html_enhanced_config.dart';
 import '_specs.dart';
 
-import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 import 'package:angular_dart_ui_bootstrap/bootstrap.dart';
 import 'package:angular_dart_ui_bootstrap/accordion/accordion.dart';
 
@@ -21,7 +20,6 @@ part 'accordion/accordion_test.dart';
 part 'alert/alert_test.dart';
 part 'buttons/buttons_test.dart';
 part 'collapse/collapse_test.dart';
-part 'core/core_component_test.dart';
 part 'dropdown_toggle/dropdown_toggle_test.dart';
 part 'tabs/tabs_test.dart';
 
@@ -37,7 +35,6 @@ void main() {
     test('Alert', () => alertTest());
     test('Buttons', () => buttonsTest());
     test('Collapse', () => collapseTest());
-    test('Core', () => coreTest());
     test('Dropdown Toggle', () => dropdownToggleTest());
     test('Tabs', () => tabsTest());
   });
@@ -54,14 +51,4 @@ Element compileComponent(String html, Compiler $compile, Scope $rootScope, Injec
   return element[0];
 }
 
-List<Element> extSelector(var element, String selector) {
-  List<Element> elements = new List();
-  //print("outo for each " + element.innerHtml);
-  //print("search: " + element.querySelector("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").toString());
-  elements.addAll( element.querySelectorAll(selector) );
-  element.querySelectorAll("[" + BaseComponent.BOOTSTRAP_COMPONENT_ATTR + "]").forEach((Element e) {
-    elements.addAll( extSelector(e.shadowRoot, selector) );
-  });
-  return elements;
-}
 

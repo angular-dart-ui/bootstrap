@@ -34,14 +34,14 @@ void tabsTest() {
   }
   
   List<Element> contents(Element elm) {
-    return extSelector( elm , '.tab-pane' );
+    return ngQuery( elm , '.tab-pane' );
   }
 
   void expectTitles(Element elm, titlesArray) {
     List<Element> t = titles(elm);
     expect(t.length).toEqual(titlesArray.length);
     for (int i=0; i<t.length; i++) {
-      expect(extSelector(t[i] ,'tab-heading')[0].innerHtml.trim()).toEqual(titlesArray[i]);
+      expect(ngQuery(t[i] ,'tab-heading')[0].innerHtml.trim()).toEqual(titlesArray[i]);
     }
   }
   
@@ -85,12 +85,12 @@ void tabsTest() {
       ElementList<Element> t = titles(createElement());
       expect(t.length).toBe(2);
       //print(t[0].outerHtml);
-      expect(renderedText( extSelector(t[0] ,'a')[0] )).toEqual('First Tab 1');
+      expect(renderedText( ngQuery(t[0] ,'a')[0] )).toEqual('First Tab 1');
       //It should put the tab-heading element into the 'a' title
-      //print( extSelector(t[1] ,'tab-heading')[0].innerHtml );
-      //expect( extSelector(t[1] ,'a')[0].children[0].shadowRoot .is('tab-heading')).toBe(true);
-      expect(renderedText( extSelector(t[1] ,'a')[0] )).toEqual('Second Tab 2');
-      expect( extSelector(t[1] ,'tab-heading')[0].innerHtml ).toEqual('<b>Second</b> Tab 2');
+      //print( ngQuery(t[1] ,'tab-heading')[0].innerHtml );
+      //expect( ngQuery(t[1] ,'a')[0].children[0].shadowRoot .is('tab-heading')).toBe(true);
+      expect(renderedText( ngQuery(t[1] ,'a')[0] )).toEqual('Second Tab 2');
+      expect( ngQuery(t[1] ,'tab-heading')[0].innerHtml ).toEqual('<b>Second</b> Tab 2');
     })));
 
     test('should bind tabs content and set first tab active', async(inject(() {
@@ -98,8 +98,8 @@ void tabsTest() {
       
       expect(contents(elems).length).toBe(1);
       expect(contents(elems)[0]).toHaveClass('active');
-      print(extSelector(elems ,'tab')[0].getDestinationInsertionPoints()[0].text);
-      expect( renderedText ( extSelector(elems ,'#tab-content')[0] ) ).toEqual('first content is 1');
+      print(ngQuery(elems ,'tab')[0].getDestinationInsertionPoints()[0].text);
+      expect( renderedText ( ngQuery(elems ,'#tab-content')[0] ) ).toEqual('first content is 1');
       
       //expect(contents(elems)[1]).not.toHaveClass('active');
       //expect(scope.actives.one).toBe(true);
@@ -108,7 +108,7 @@ void tabsTest() {
     
     test('should change active on click', async(inject(() {
       Element elems = createElement();
-      extSelector(titles(elems)[1] , 'a')[0].click();
+      ngQuery(titles(elems)[1] , 'a')[0].click();
       expect(contents(elems)[0]).toHaveClass('active');
       expect(titles(elems)[0]).not.toHaveClass('active');
       expect(titles(elems)[1]).toHaveClass('active');
@@ -119,9 +119,9 @@ void tabsTest() {
     
     test('should call select callback on select', async(inject(() {
       Element elems = createElement();
-      extSelector(titles(elems)[1] , 'a')[0].click();
+      ngQuery(titles(elems)[1] , 'a')[0].click();
       expect($rootScope.selectSecond).toHaveBeenCalled();
-      extSelector(titles(elems)[0] , 'a')[0].click();
+      ngQuery(titles(elems)[0] , 'a')[0].click();
       expect($rootScope.selectFirst).toHaveBeenCalled();
     })));
 
@@ -129,10 +129,10 @@ void tabsTest() {
     test('should call deselect callback on deselect', async(inject(() {
       Element elems = createElement();
       expect($rootScope.deselectSecond).not.toHaveBeenCalled();
-      extSelector(titles(elems)[1] , 'a')[0].click();
-      extSelector(titles(elems)[0] , 'a')[0].click();
+      ngQuery(titles(elems)[1] , 'a')[0].click();
+      ngQuery(titles(elems)[0] , 'a')[0].click();
       expect($rootScope.deselectSecond).toHaveBeenCalled();
-      extSelector(titles(elems)[0] , 'a')[0].click();
+      ngQuery(titles(elems)[0] , 'a')[0].click();
       expect($rootScope.deselectFirst).toHaveBeenCalled();
     })));
 

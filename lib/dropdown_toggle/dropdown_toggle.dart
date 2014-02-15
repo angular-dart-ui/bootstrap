@@ -11,7 +11,6 @@ library bootstrap.ui.dropdownToggle;
 
 import 'dart:html';
 import 'package:angular/angular.dart';
-import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 class DropdownToggleModule extends Module {
   DropdownToggleModule() {
@@ -46,14 +45,15 @@ class DropdownService {
     selector: '.dropdown',
     visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY
 )
-class DropdownDirective extends BaseComponent implements NgDetachAware {
+class DropdownDirective implements NgDetachAware {
   
-  DropdownService dropdownService;
+  final Element element;
+  final DropdownService dropdownService;
   EventListener onClickListener;
   EventListener onKeyDownListener;
   bool open = false;
   
-  DropdownDirective(Element element, this.dropdownService) : super(element) {
+  DropdownDirective(this.element, this.dropdownService) {
     onClickListener = (MouseEvent event) {
       this.isOpen = false;
     };
@@ -88,11 +88,12 @@ class DropdownDirective extends BaseComponent implements NgDetachAware {
 @NgDirective(
     selector: '.dropdown-toggle'
 )
-class DropdownToggleDirective extends BaseComponent {
+class DropdownToggleDirective {
   
+  final Element element;
   final DropdownDirective dropdown;
   
-  DropdownToggleDirective(Element element, this.dropdown) : super(element) {
+  DropdownToggleDirective(this.element, this.dropdown) {
     element.onClick.listen((event) { 
       event.preventDefault();
       event.stopPropagation();

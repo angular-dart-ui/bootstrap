@@ -11,7 +11,6 @@ library bootstrap.ui.tabs;
 
 import 'package:angular/angular.dart';
 import 'dart:html';
-import 'package:angular_dart_ui_bootstrap/core/core_component.dart';
 
 part 'tab.dart';
 part 'tab_heading.dart';
@@ -47,15 +46,12 @@ class TabsetModule extends Module {
       'justified': '=>justified'
     }
 )
-class TabsetComponent extends BaseComponent {
+class TabsetComponent {
   
   bool justified = false;
   bool vertical = false;
   List<TabComponent> tabs = [];
   
-  TabsetComponent(Element element) : super(element) {
-  }
-
   void select(TabComponent tab) {
     if (!tab.disabled) {
       tabs.forEach((tab) {
