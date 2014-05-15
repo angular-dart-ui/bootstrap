@@ -13,7 +13,7 @@ export 'jasmine_syntax.dart' hide main;
 export 'package:unittest/unittest.dart';
 export 'package:unittest/mock.dart';
 export 'package:di/dynamic_injector.dart';
-export 'package:angular/angular.dart';
+export 'package:angular/angular.dart' hide Animation;
 export 'package:angular/mock/module.dart';
 export 'package:perf_api/perf_api.dart';
 

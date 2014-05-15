@@ -10,7 +10,7 @@
 library bootstrap_ui_demo;
 
 import 'package:angular/angular.dart';
-import 'package:di/di.dart';
+import 'package:angular/application_factory.dart';
 import '../lib/bootstrap.dart';
 import 'dart:html';
 
@@ -21,7 +21,7 @@ part 'collapse/collapseDemo.dart';
 part 'dropdown_toggle/dropdownToggleDemo.dart';
 part 'tabs/tabsDemo.dart';
 
-@NgController(
+@Controller(
     selector: '[bootstrap-ui-demo]',
     publishAs: 'mainCtrl')
 class BootstrapUiController {
@@ -39,7 +39,7 @@ class BootstrapUiController {
   
 }
 
-@NgComponent(
+@Component(
     selector: 'module-section',
     templateUrl: 'moduleSection.html',
     publishAs: 'ctrl',
@@ -48,7 +48,7 @@ class BootstrapUiController {
       'module': '=>moduleDef'
     }
 )
-class ModuleSectionComponent implements NgShadowRootAware {
+class ModuleSectionComponent implements ShadowRootAware {
   
   ModuleDefinition module;
   Http http;
@@ -104,5 +104,5 @@ class MyAppModule extends Module {
 }
 
 main() {
-  ngBootstrap(module: new MyAppModule());
+  applicationFactory().addModule( new MyAppModule()).run();
 }

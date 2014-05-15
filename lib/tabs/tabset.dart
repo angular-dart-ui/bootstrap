@@ -23,9 +23,9 @@ class TabsetModule extends Module {
   }
 }
 
-@NgComponent(
+@Component(
     selector: 'tabset',
-    visibility: NgDirective.CHILDREN_VISIBILITY,
+    visibility: Directive.CHILDREN_VISIBILITY,
     template:
 '''
 <div class="tabbable">

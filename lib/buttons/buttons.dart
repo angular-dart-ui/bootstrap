@@ -19,7 +19,7 @@ class ButtonsModule extends Module {
   }
 }
 
-@NgDirective(
+@Decorator(
     selector: '[btn-radio][ng-model]',
     map: const {
       'btnRadio': '=>buttonValue'
@@ -36,7 +36,7 @@ class ButtonRadioDirective {
       evaluateValue(value);
     };
     inputElement.onClick.listen((value) {
-      scope.$apply(() => ngModel.viewValue = this.currentValue);
+      scope.apply(() => ngModel.viewValue = this.currentValue);
     });
   }
   
@@ -56,7 +56,7 @@ class ButtonRadioDirective {
 }
 
 
-@NgDirective(
+@Decorator(
     selector: '[btn-checkbox][ng-model]'
 )
 class ButtonCheckboxDirective {
@@ -78,7 +78,7 @@ class ButtonCheckboxDirective {
     
     element.onClick.listen((value) {
       checked = !checked;
-      scope.$apply(() {
+      scope.apply(() {
         if (checked) {
           ngModel.viewValue = getTrueValue();
         } else {
@@ -97,7 +97,7 @@ class ButtonCheckboxDirective {
   }
   
   getCheckboxValue(String attributeValue, bool defaultValue) {
-    dynamic val = scope.$eval(attributeValue);
+    dynamic val = scope.eval(attributeValue);
     return val != null ? val : defaultValue;
   }
   

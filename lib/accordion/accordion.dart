@@ -24,9 +24,9 @@ class AccordionModule extends Module {
   }
 }
 
-@NgComponent(
+@Component(
     selector: 'accordion',
-    visibility: NgDirective.CHILDREN_VISIBILITY,
+    visibility: Directive.CHILDREN_VISIBILITY,
     template:
 '''
 <div class="panel-group">

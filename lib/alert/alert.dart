@@ -18,7 +18,7 @@ class AlertModule extends Module {
   }
 }
 
-@NgComponent(
+@Component(
     selector: 'alert',
     //templateUrl: 'packages/angular_dart_ui_bootstrap_ui/alert/alert.html',
     template:

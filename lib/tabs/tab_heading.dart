@@ -9,14 +9,14 @@
 
 part of bootstrap.ui.tabs;
 
-@NgComponent(
+@Component(
     selector: 'tab-heading-transclude',
     applyAuthorStyles: true,
     map: const {
       'tab': '=>tab'
     }
 )
-class TabHeadingTranscludeComponent implements NgShadowRootAware {
+class TabHeadingTranscludeComponent implements ShadowRootAware {
   
   TabComponent tab;
 

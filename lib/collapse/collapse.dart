@@ -19,7 +19,7 @@ class CollapseModule extends Module {
   }
 }
 
-@NgDirective(
+@Decorator(
     selector: '[collapse]',
     map: const {
       'collapse': '=>collapseValue'

@@ -9,9 +9,9 @@
 
 part of bootstrap.ui.tabs;
 
-@NgComponent(
+@Component(
     selector: 'tab',
-    visibility: NgDirective.CHILDREN_VISIBILITY,
+    visibility: Directive.CHILDREN_VISIBILITY,
     template:
 '''
 <div ng-if="tabCtrl.active" class="tab-pane" ng-class="{active: tabCtrl.active}">
@@ -29,7 +29,7 @@ part of bootstrap.ui.tabs;
       'deselect': '&onDeselectCallback'
     }
 )
-class TabComponent implements NgDetachAware {
+class TabComponent implements DetachAware {
   
   final TabsetComponent tabsetCtrl; 
   final Element element;

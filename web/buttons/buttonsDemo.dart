@@ -1,6 +1,6 @@
 part of bootstrap_ui_demo;
 
-@NgController(
+@Controller(
     selector: '[buttons-demo-controller]',
     publishAs: 'btnCtrl')
 class ButtonsDemoController {

@@ -9,14 +9,14 @@
 
 part of bootstrap.ui.accordion;
 
-@NgComponent(
+@Component(
     selector: 'accordion-heading-transclude',
     applyAuthorStyles: true,
     map: const {
       'group': '=>group'
     }
 )
-class AccordionHeadingTranscludeComponent implements NgShadowRootAware {
+class AccordionHeadingTranscludeComponent implements ShadowRootAware {
   
   final Element element;
   final AccordionGroupComponent group;
