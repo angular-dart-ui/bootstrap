@@ -1,9 +1,11 @@
 angular_dart_ui_bootstrap
 =========================
 
-This project aims to port Angular-UI to Dart.
+##WARN: This project has been merged with angular.dart.ui
+Developments will continue on https://github.com/akserg/angular.dart.ui
 
-###UI components already available
+
+###UI components already available (please check https://github.com/akserg/angular.dart.ui for more components)
 
 - **Accordion**
 - **Alert**
