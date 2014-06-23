@@ -20,7 +20,7 @@ class DropdownToggleModule extends Module {
   }
 }
 
-@NgInjectableService()
+@Injectable()
 class DropdownService {
   
   DropdownDirective currentOpenedDropdown;
@@ -41,11 +41,11 @@ class DropdownService {
 }
 
 
-@NgDirective(
+@Decorator(
     selector: '.dropdown',
-    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY
+    visibility: Directive.DIRECT_CHILDREN_VISIBILITY
 )
-class DropdownDirective implements NgDetachAware {
+class DropdownDirective implements DetachAware {
   
   final Element element;
   final DropdownService dropdownService;
@@ -85,7 +85,7 @@ class DropdownDirective implements NgDetachAware {
   }
 }
 
-@NgDirective(
+@Decorator(
     selector: '.dropdown-toggle'
 )
 class DropdownToggleDirective {

@@ -1,6 +1,6 @@
 part of bootstrap_ui_demo;
 
-@NgController(
+@Controller(
     selector: '[tabs-demo-controller]',
     publishAs: 'tabsCtrl')
 class TabsDemoController {

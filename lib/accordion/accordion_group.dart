@@ -9,9 +9,9 @@
 
 part of bootstrap.ui.accordion;
 
-@NgComponent(
+@Component(
     selector: 'accordion-group',
-    visibility: NgDirective.CHILDREN_VISIBILITY,
+    visibility: Directive.CHILDREN_VISIBILITY,
     template:
 '''
 <div class="panel panel-default">
@@ -38,7 +38,7 @@ part of bootstrap.ui.accordion;
       'heading' : '@heading'
     }
 )
-class AccordionGroupComponent implements NgDetachAware {
+class AccordionGroupComponent implements DetachAware {
   
   final Element element;
   final AccordionComponent accCtrl;

@@ -1,6 +1,6 @@
 part of bootstrap_ui_demo;
 
-@NgController(
+@Controller(
     selector: '[dropdown-demo-controller]',
     publishAs: 'ddCtrl')
 class DropdownToggleDemoController {

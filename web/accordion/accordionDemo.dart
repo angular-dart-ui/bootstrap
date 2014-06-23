@@ -1,6 +1,6 @@
 part of bootstrap_ui_demo;
 
-@NgController(
+@Controller(
     selector: '[accordion-demo-controller]',
     publishAs: 'accCtrl')
 class AccordionDemoController {
